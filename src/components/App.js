@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Grommet } from 'grommet';
 import NavBar from './NavBar';
+import Board from './Board';
 
 // Set server URL
 const URL = `${process.env.REACT_APP_API_URL}`;
@@ -23,9 +24,16 @@ const App = () => {
   const [tasks, setTasks] = useState([])
   const [users, setUsers] = useState([])
 
+  useEffect(() => {
+    fetch(`${URL}/`)
+      .then((r) => r.json())
+      .then((data) => setTasks(data))
+  },[])
+
   return (
     <Grommet theme={theme} full>
       <NavBar />
+      <Board tasks={tasks} />
     </Grommet>
   );
 }
