@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Grommet } from 'grommet';
 import NavBar from './NavBar';
+
+// Set server URL
+const URL = `${process.env.REACT_APP_API_URL}`;
 
 const theme = {
   global: {
