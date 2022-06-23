@@ -19,6 +19,10 @@ const theme = {
 };
 
 const App = () => {
+  const [projects, setProjects] = useState([])
+  const [tasks, setTasks] = useState([])
+  const [users, setUsers] = useState([])
+
   return (
     <Grommet theme={theme} full>
       <NavBar />
