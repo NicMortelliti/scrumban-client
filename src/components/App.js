@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grommet } from 'grommet';
+import NavBar from './NavBar';
 
 const theme = {
   global: {
@@ -17,7 +18,7 @@ const theme = {
 const App = () => {
   return (
     <Grommet theme={theme} full>
-      <h1>Hello, world!</h1>
+      <NavBar />
     </Grommet>
   );
 }
