@@ -8,22 +8,27 @@ function Board({ tasks }) {
   const [closed, setClosed] = useState([])
   
   useEffect(() => {
+    let newBacklog = []
+    let newInProgress = []
+    let newPeerReview = []
+    let newClosed = [] 
     tasks.map(task => {
       if (task.state === 1) {
-        const newBacklog = [...backlog, task];
-        setBacklog(newBacklog)
+        newBacklog = [...newBacklog, task];
       } else if (task.state === 2) {
-        const newInProgress = [...inProgress, task];
-        setInProgress(newInProgress)
+        newInProgress = [...newInProgress, task];
       } else if (task.state === 3) {
-        const newPeerReview = [...peerReview, task];
-        setPeerReview(newPeerReview)
+        newPeerReview = [...newPeerReview, task];
       } else if (task.state === 4) {
-        const newClosed = [...closed, task];
-        setClosed(newClosed)
+        newClosed = [...newClosed, task];
       }
     })
-  },[tasks])
+    setBacklog(newBacklog)
+    setInProgress(newInProgress)
+    setPeerReview(newPeerReview)
+    setClosed(newClosed)
+  }, [tasks])
+  
 
   return (
     <div>
