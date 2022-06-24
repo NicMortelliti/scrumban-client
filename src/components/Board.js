@@ -7,6 +7,11 @@ function Board({ tasks }) {
   const [peerReview, setPeerReview] = useState([])
   const [closed, setClosed] = useState([])
   
+  // Categorize tasks according to kanban state
+  // 1 = backlog
+  // 2 = In-Progress
+  // 3 = Peer Review
+  // 4 = Closed
   useEffect(() => {
     let newBacklog = []
     let newInProgress = []
