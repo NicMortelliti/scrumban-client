@@ -1,8 +1,11 @@
 import React from 'react'
 
-function TaskCard({task}) {
+function TaskCard({ task }) {
   return (
-    <p>{task.description}</p>
+    <div>
+      <p>{task.description}</p>
+      <p>{task.id}</p>
+    </div>
   )
 }
 
