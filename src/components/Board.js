@@ -27,10 +27,10 @@ function Board({ tasks }) {
 
   return (
     <div>
-      <CardStack stack={"backlog"} tasks={backlog} /> {/* Backlog */}
-      <CardStack stack={"inProgress"} tasks={inProgress} /> {/* In-Progress */}
-      <CardStack stack={"peerReview"} tasks={peerReview} /> {/* Peer Review */}
-      <CardStack stack={"closed"} tasks={closed} /> {/* Closed */}
+      <CardStack stack={"Backlog"} tasks={backlog} /> {/* Backlog */}
+      <CardStack stack={"In Progress"} tasks={inProgress} /> {/* In-Progress */}
+      <CardStack stack={"Peer Review"} tasks={peerReview} /> {/* Peer Review */}
+      <CardStack stack={"Closed"} tasks={closed} /> {/* Closed */}
     </div>
   )
 }
