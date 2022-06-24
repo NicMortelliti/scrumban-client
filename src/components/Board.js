@@ -13,8 +13,8 @@ function Board({ tasks }) {
         const newBacklog = [...backlog, task];
         setBacklog(newBacklog)
       } else if (task.state === 2) {
-        const newInPogress = [...inProgress, task];
-        setInProgress(newInPogress)
+        const newInProgress = [...inProgress, task];
+        setInProgress(newInProgress)
       } else if (task.state === 3) {
         const newPeerReview = [...peerReview, task];
         setPeerReview(newPeerReview)
