@@ -42,7 +42,9 @@ function Board({ tasks }) {
         count: 4,
         size: 'auto',
       }}
-      gap="small"
+      gap='medium'
+      border='vertical'
+      pad='medium'
     >
       <CardStack stack={"Backlog"} tasks={backlog} /> {/* Backlog */}
       <CardStack stack={"In Progress"} tasks={inProgress} /> {/* In-Progress */}
