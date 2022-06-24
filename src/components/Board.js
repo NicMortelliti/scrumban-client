@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import { Box, Grid } from 'grommet'
 import CardStack from './CardStack'
 
 function Board({ tasks }) {
@@ -36,12 +37,18 @@ function Board({ tasks }) {
   
 
   return (
-    <div>
+    <Grid
+      columns={{
+        count: 4,
+        size: 'auto',
+      }}
+      gap="small"
+    >
       <CardStack stack={"Backlog"} tasks={backlog} /> {/* Backlog */}
       <CardStack stack={"In Progress"} tasks={inProgress} /> {/* In-Progress */}
       <CardStack stack={"Peer Review"} tasks={peerReview} /> {/* Peer Review */}
       <CardStack stack={"Closed"} tasks={closed} /> {/* Closed */}
-    </div>
+    </Grid>
   )
 }
 
