@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Grommet } from 'grommet';
 import NavBar from './NavBar';
 import Board from './Board';
+import EditForm from './EditForm';
 
 // Set server URL
 const URL = `${process.env.REACT_APP_API_URL}`;
@@ -34,6 +35,7 @@ const App = () => {
     <Grommet theme={theme} full>
       <NavBar />
       <Board tasks={tasks} />
+      <EditForm />
     </Grommet>
   );
 }
