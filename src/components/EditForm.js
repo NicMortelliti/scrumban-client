@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Add, Close, Task } from "grommet-icons";
 import {
   Box,
@@ -17,10 +17,20 @@ import { CurrentTaskContext } from "../context/currentTask";
 
 function EditForm() {
   const [select, setSelect] = useState("");
+  const [task, setTask] = useState();
   const { editOpen, setEditOpen } = useContext(EditOpenContext);
   const { currentTask } = useContext(CurrentTaskContext);
 
   const onClose = () => setEditOpen(undefined);
+
+  useEffect(() => {
+    setTask(currentTask);
+  }, [currentTask]);
+
+  const handleChange = (e) => {
+    const newTask = { ...task, description: e.target.value };
+    setTask(newTask);
+  };
 
   return (
     <Box fill align="center" justify="center">
@@ -40,26 +50,17 @@ function EditForm() {
             onSubmit={onclose}>
             <Box flex={false} direction="row" justify="between">
               <Heading level={2} margin="none">
-                Task ID: {currentTask.id}
+                Task ID: {task.id}
               </Heading>
               <Button icon={<Close />} onClick={onClose} />
             </Box>
             <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
               <FormField label="First">
-                <TextInput />
+                <TextInput value={task.description} onChange={handleChange} />
               </FormField>
               <FormField label="Second">
                 <Select
-                  options={[
-                    "one",
-                    "two",
-                    "three",
-                    "four",
-                    "five",
-                    "six",
-                    "seven",
-                    "eight",
-                  ]}
+                  options={["one", "two"]}
                   value={select}
                   onSearch={() => {}}
                   onChange={({ option }) => setSelect(option)}
