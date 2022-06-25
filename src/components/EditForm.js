@@ -27,8 +27,13 @@ function EditForm() {
     setTask(currentTask);
   }, [currentTask]);
 
-  const handleChange = (e) => {
+  const handleDescriptionChange = (e) => {
     const newTask = { ...task, description: e.target.value };
+    setTask(newTask);
+  };
+
+  const handlePointsChange = (e) => {
+    const newTask = { ...task, story_points: e.target.value };
     setTask(newTask);
   };
 
@@ -56,17 +61,21 @@ function EditForm() {
             </Box>
             <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
               <FormField label="First">
-                <TextInput value={task.description} onChange={handleChange} />
-              </FormField>
-              <FormField label="Second">
-                <Select
-                  options={["one", "two"]}
-                  value={select}
-                  onSearch={() => {}}
-                  onChange={({ option }) => setSelect(option)}
+                <TextInput
+                  value={task.description}
+                  onChange={handleDescriptionChange}
                 />
               </FormField>
-              <FormField label="Third">
+              <FormField label="Story Points:">
+                <TextInput
+                  value={task.story_points}
+                  onChange={handlePointsChange}
+                />
+              </FormField>
+              <FormField label="Due Date:">
+                <TextArea />
+              </FormField>
+              <FormField label="Assigned To:">
                 <TextArea />
               </FormField>
             </Box>
