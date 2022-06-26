@@ -12,9 +12,16 @@ import { FormPrevious, FormNext } from "grommet-icons";
 
 // Import contexts
 import { EditOpenContext } from "../context/editOpen";
+import { CurrentTaskContext } from "../context/currentTask";
 
 function TaskCard({ task }) {
   const { setEditOpen } = useContext(EditOpenContext);
+  const { setCurrentTask } = useContext(CurrentTaskContext);
+
+  const onEditOpen = () => {
+    setEditOpen(true);
+    setCurrentTask(task);
+  };
 
   return (
     <Card
@@ -35,7 +42,7 @@ function TaskCard({ task }) {
       </Text>
       <CardFooter pad={{ horizontal: "medium" }} background="light-2">
         <Button plain={true} icon={<FormPrevious />} />
-        <Button label="Edit" onClick={() => setEditOpen(true)} />
+        <Button label="Edit" onClick={onEditOpen} />
         <Button plain={true} icon={<FormNext />} />
       </CardFooter>
     </Card>

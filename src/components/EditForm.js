@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Add, Close } from "grommet-icons";
+import { Add, Close, Task } from "grommet-icons";
 import {
   Box,
   Button,
@@ -13,10 +13,12 @@ import {
 
 // Import contexts
 import { EditOpenContext } from "../context/editOpen";
+import { CurrentTaskContext } from "../context/currentTask";
 
-function EditForm({ open, setOpen }) {
+function EditForm() {
   const [select, setSelect] = useState("");
   const { editOpen, setEditOpen } = useContext(EditOpenContext);
+  const { currentTask } = useContext(CurrentTaskContext);
 
   const onClose = () => setEditOpen(undefined);
 
@@ -38,7 +40,7 @@ function EditForm({ open, setOpen }) {
             onSubmit={onclose}>
             <Box flex={false} direction="row" justify="between">
               <Heading level={2} margin="none">
-                Add
+                Task ID: {currentTask.id}
               </Heading>
               <Button icon={<Close />} onClick={onClose} />
             </Box>
