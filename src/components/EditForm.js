@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Add, Close } from 'grommet-icons'
+import React, { useContext, useState } from "react";
+import { Add, Close } from "grommet-icons";
 import {
   Box,
   Button,
@@ -9,55 +9,54 @@ import {
   Select,
   TextArea,
   TextInput,
-} from 'grommet'
+} from "grommet";
 
-function EditForm() {
-  const [open, setOpen] = useState(false)
-  const [select, setSelect] = useState('')
+// Import contexts
+import { EditOpenContext } from "../context/editOpen";
 
-  const onOpen = () => setOpen(true)
+function EditForm({ open, setOpen }) {
+  const [select, setSelect] = useState("");
+  const { editOpen, setEditOpen } = useContext(EditOpenContext);
 
-  const onClose = () => setOpen(undefined)
+  const onClose = () => setEditOpen(undefined);
 
   return (
-    <Box fill align='center' justify='center'>
-      {open && (
+    <Box fill align="center" justify="center">
+      {editOpen && (
         <Layer
-          position='right'
-          full='vertical'
+          position="right"
+          full="vertical"
           modal
           onClickOutside={onClose}
-          onEsc={onClose}
-        >
+          onEsc={onClose}>
           <Box
-            as='form'
-            fill='vertical'
-            overflow='auto'
-            width='medium'
-            pad='medium'
-            onSubmit={onclose}
-          >
+            as="form"
+            fill="vertical"
+            overflow="auto"
+            width="medium"
+            pad="medium"
+            onSubmit={onclose}>
             <Box flex={false} direction="row" justify="between">
               <Heading level={2} margin="none">
                 Add
               </Heading>
               <Button icon={<Close />} onClick={onClose} />
             </Box>
-            <Box flex="grow" overflow="auto" pad={{ vertical: 'medium' }}>
+            <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
               <FormField label="First">
-                <TextInput/>
+                <TextInput />
               </FormField>
               <FormField label="Second">
                 <Select
                   options={[
-                    'one',
-                    'two',
-                    'three',
-                    'four',
-                    'five',
-                    'six',
-                    'seven',
-                    'eight',
+                    "one",
+                    "two",
+                    "three",
+                    "four",
+                    "five",
+                    "six",
+                    "seven",
+                    "eight",
                   ]}
                   value={select}
                   onSearch={() => {}}
@@ -70,13 +69,12 @@ function EditForm() {
             </Box>
             <Box flex={false} as="footer" align="start">
               <Button type="submit" label="Submit" onClick={onClose} primary />
-            </Box>            
-
+            </Box>
           </Box>
         </Layer>
       )}
     </Box>
-  )
+  );
 }
 
-export default EditForm
+export default EditForm;

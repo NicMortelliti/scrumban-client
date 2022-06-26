@@ -34,7 +34,7 @@ const App = () => {
   return (
     <Grommet theme={theme} full>
       <NavBar />
-      <Board tasks={tasks} />
+      <Board tasks={tasks}  />
       <EditForm />
     </Grommet>
   );
