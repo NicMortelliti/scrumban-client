@@ -8,12 +8,14 @@ import EditFormDatePick from "../components/EditFormDatePick";
 function EditForm({ setOpen, task, url }) {
   const [users, setUsers] = useState([]);
 
+  // const currentTask = [...task];
   const [formData, setFormData] = useState({
+    ...task,
     id: task.id,
     description: task.description,
     points: task.story_points,
-    due: task.due_date,
-    assigned: task.user.username,
+    due_date: task.due_date,
+    assigned_to: task.user.username,
   });
 
   useEffect(() => {
@@ -28,19 +30,19 @@ function EditForm({ setOpen, task, url }) {
   // Dynamically sets object key:value depending
   // on the component that calls the function.
   const handleTextChange = (e) => {
-    const newTask = { ...task, [e.target.name]: e.target.value };
+    const newTask = { ...formData, [e.target.name]: e.target.value };
     setFormData(newTask);
   };
 
   // Update selection boxes
   const handleUserSelectChange = (e) => {
-    const newTask = { ...task, [task.user.username]: e.target.value };
+    const newTask = { ...formData, [e.target.name]: e.target.value };
     setFormData(newTask);
   };
 
   // Update due date
-  const handleDateChange = (e) => {
-    const newTask = { ...task, [task.due_date]: e.target.value };
+  const handleDateChange = (e, label) => {
+    const newTask = { ...formData, [label]: e.value };
     setFormData(newTask);
   };
 
@@ -78,13 +80,13 @@ function EditForm({ setOpen, task, url }) {
             />
             <EditFormDatePick
               label="Due Date"
-              value={formData.due}
+              value={formData.due_date}
               setValue={handleDateChange}
             />
             <EditFormSelect
               label="Assigned To"
               options={users}
-              value={formData.assigned}
+              value={formData.assigned_to}
               setValue={handleUserSelectChange}
             />
           </Box>
