@@ -39,6 +39,34 @@ function EditForm({ setOpen, task, url }) {
     console.log("Woah, did you mean to click that?");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const itemData = {
+      description: formData.description,
+      due_date: formData.due_date,
+      story_points: formData.points,
+      //project_id:
+      //user_id:
+    };
+
+    // Fetch POST data to backend
+    fetch(`${url}/tasks/${formData.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itemData),
+    }).then((r) => r.json());
+    // .then((newItem) => {
+    //   setData([...data, newItem]);
+    //   updateStates();
+    //   history.push(`/${currentAc}/${currentPhase}`);
+    // });
+
+    onClose();
+  };
+
   return (
     <Box fill align="center" justify="center">
       <Layer
@@ -97,7 +125,12 @@ function EditForm({ setOpen, task, url }) {
                 label="Delete"
                 onClick={handleClick}
               />
-              <Button type="submit" label="Submit" onClick={onClose} primary />
+              <Button
+                type="submit"
+                label="Submit"
+                onClick={(e) => handleSubmit(e)}
+                primary
+              />
             </Box>
           </Box>
         </Box>
