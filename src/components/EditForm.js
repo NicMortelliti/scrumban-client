@@ -26,23 +26,12 @@ function EditForm({ setOpen, task, url }) {
 
   const onClose = () => setOpen(false);
 
-  // Handle change function for text fields.
+  // Handle change function
   // Dynamically sets object key:value depending
   // on the component that calls the function.
-  const handleTextChange = (e) => {
-    const newTask = { ...formData, [e.target.name]: e.target.value };
-    setFormData(newTask);
-  };
-
-  // Update selection boxes
-  const handleUserSelectChange = (e) => {
-    const newTask = { ...formData, [e.target.name]: e.target.value };
-    setFormData(newTask);
-  };
-
-  // Update due date
-  const handleDateChange = (e, label) => {
-    const newTask = { ...formData, [label]: e.value };
+  const handleChange = (value, key) => {
+    console.log(key, value);
+    const newTask = { ...formData, [key]: value };
     setFormData(newTask);
   };
 
@@ -71,23 +60,23 @@ function EditForm({ setOpen, task, url }) {
             <EditFormTextInput
               label="Description"
               value={formData.description}
-              setValue={handleTextChange}
+              setValue={handleChange}
             />
             <EditFormTextInput
               label="Points"
               value={formData.points}
-              setValue={handleTextChange}
+              setValue={handleChange}
             />
             <EditFormDatePick
               label="Due Date"
               value={formData.due_date}
-              setValue={handleDateChange}
+              setValue={handleChange}
             />
             <EditFormSelect
               label="Assigned To"
               options={users}
               value={formData.assigned_to}
-              setValue={handleUserSelectChange}
+              setValue={handleChange}
             />
           </Box>
           <Box flex={false} as="footer" align="start">

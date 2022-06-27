@@ -9,7 +9,7 @@ function EditFormDatePick({ label, value, setValue }) {
         format="mm/dd/yyyy"
         value={value}
         onChange={(date) =>
-          setValue(date, label.toLowerCase().replace(/ /g, "_"))
+          setValue(date.value, label.toLowerCase().replace(/ /g, "_"))
         }
       />
     </FormField>

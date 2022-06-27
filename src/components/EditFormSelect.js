@@ -14,7 +14,9 @@ function EditFormSelect({ label, options, value, setValue }) {
         name={label.toLowerCase().replace(/ /g, "_")}
         options={menuOptions}
         value={value}
-        onChange={setValue}
+        onChange={(selection) =>
+          setValue(selection.value, label.toLowerCase().replace(/ /g, "_"))
+        }
       />
     </FormField>
   );

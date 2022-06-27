@@ -7,7 +7,9 @@ function EditFormTextInput({ label, value, setValue }) {
       <TextInput
         name={label.toLowerCase()}
         value={value}
-        onChange={setValue}
+        onChange={(text) =>
+          setValue(text.target.value, label.toLowerCase().replace(/ /g, "_"))
+        }
       />
     </FormField>
   );
