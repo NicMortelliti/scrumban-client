@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Add, Close, Task } from "grommet-icons";
-import {
-  Box,
-  Button,
-  FormField,
-  Heading,
-  Layer,
-  Select,
-  TextArea,
-  TextInput,
-} from "grommet";
+import { Close } from "grommet-icons";
+import { Box, Button, Heading, Layer } from "grommet";
 import EditFormTextInput from "../components/EditFormTextInput";
 import EditFormSelect from "../components/EditFormSelect";
+import EditFormDatePick from "./EditFormDatePick";
 
 function EditForm({ setOpen, task, url }) {
   const [users, setUsers] = useState([]);
@@ -21,7 +13,7 @@ function EditForm({ setOpen, task, url }) {
     description: task.description,
     points: task.story_points,
     due: task.due_date,
-    assigned: task.username,
+    assigned: task.user.username,
   });
 
   useEffect(() => {
@@ -40,8 +32,15 @@ function EditForm({ setOpen, task, url }) {
     setFormData(newTask);
   };
 
+  // Update selection boxes
   const handleUserSelectChange = (e) => {
-    const newTask = { ...task, [task.user.first_name]: e.target.value };
+    const newTask = { ...task, [task.user.username]: e.target.value };
+    setFormData(newTask);
+  };
+
+  // Update due date
+  const handleDateChange = (e) => {
+    const newTask = { ...task, [task.due_date]: e.target.value };
     setFormData(newTask);
   };
 
@@ -77,11 +76,13 @@ function EditForm({ setOpen, task, url }) {
               value={formData.points}
               setValue={handleTextChange}
             />
-            <FormField label="Due Date:">
-              <TextArea />
-            </FormField>
+            <EditFormDatePick
+              label="DueDate"
+              value={formData.due_date}
+              setValue={handleDateChange}
+            />
             <EditFormSelect
-              label="Assigned to"
+              label="Assigned To"
               options={users}
               value={formData.assigned}
               setValue={handleUserSelectChange}

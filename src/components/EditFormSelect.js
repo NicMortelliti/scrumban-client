@@ -3,15 +3,17 @@ import React from "react";
 
 function EditFormSelect({ label, options, value, setValue }) {
   // Put usernames into list
-  const menuOptions = [options.map((each) => each.username)];
+  let menuOptions = [];
+  options.forEach((each) => {
+    menuOptions.push(each.username);
+  });
 
   return (
     <FormField label={label} name={label.toLowerCase()}>
       <Select
         name={label.toLowerCase()}
         options={menuOptions}
-        labelKey="label"
-        valueKey={value}
+        value={value}
         onChange={setValue}
       />
     </FormField>

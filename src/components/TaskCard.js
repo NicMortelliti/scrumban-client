@@ -1,13 +1,5 @@
-import React, { useContext } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Tag,
-  Text,
-} from "grommet";
+import React from "react";
+import { Button, Card, CardBody, CardFooter, CardHeader, Text } from "grommet";
 import { FormPrevious, FormNext } from "grommet-icons";
 
 function TaskCard({ task, setCurrentTask, setEditOpen }) {

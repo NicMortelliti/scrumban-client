@@ -21,7 +21,6 @@ const theme = {
 };
 
 const App = () => {
-  const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState();
   const [editOpen, setEditOpen] = useState(false);
