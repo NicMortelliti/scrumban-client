@@ -3,7 +3,7 @@ import { Close } from "grommet-icons";
 import { Box, Button, Heading, Layer } from "grommet";
 import EditFormTextInput from "../components/EditFormTextInput";
 import EditFormSelect from "../components/EditFormSelect";
-import EditFormDatePick from "./EditFormDatePick";
+import EditFormDatePick from "../components/EditFormDatePick";
 
 function EditForm({ setOpen, task, url }) {
   const [users, setUsers] = useState([]);
