@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Close } from "grommet-icons";
+import { Close, FormTrash } from "grommet-icons";
 import { Box, Button, Heading, Layer } from "grommet";
+import EditButton from "../components/EditButton";
 import EditFormTextInput from "../components/EditFormTextInput";
 import EditFormSelect from "../components/EditFormSelect";
 import EditFormDatePick from "../components/EditFormDatePick";
@@ -30,9 +31,12 @@ function EditForm({ setOpen, task, url }) {
   // Dynamically sets object key:value depending
   // on the component that calls the function.
   const handleChange = (value, key) => {
-    console.log(key, value);
     const newTask = { ...formData, [key]: value };
     setFormData(newTask);
+  };
+
+  const handleClick = (value) => {
+    console.log("Woah, did you mean to click that?");
   };
 
   return (
@@ -80,7 +84,21 @@ function EditForm({ setOpen, task, url }) {
             />
           </Box>
           <Box flex={false} as="footer" align="start">
-            <Button type="submit" label="Submit" onClick={onClose} primary />
+            <Box
+              flex={false}
+              as="footer"
+              align="start"
+              direction="row"
+              gap="small"
+              pad="xsmall">
+              <EditButton
+                color="status-critical"
+                icon={<FormTrash />}
+                label="Delete"
+                onClick={handleClick}
+              />
+              <Button type="submit" label="Submit" onClick={onClose} primary />
+            </Box>
           </Box>
         </Box>
       </Layer>
