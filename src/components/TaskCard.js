@@ -10,15 +10,9 @@ import {
 } from "grommet";
 import { FormPrevious, FormNext } from "grommet-icons";
 
-// Import contexts
-import { EditOpenContext } from "../context/editOpen";
-import { CurrentTaskContext } from "../context/currentTask";
-
-function TaskCard({ task }) {
-  const { setEditOpen } = useContext(EditOpenContext);
-  const { setCurrentTask } = useContext(CurrentTaskContext);
-
+function TaskCard({ task, setCurrentTask, setEditOpen }) {
   const onEditOpen = () => {
+    console.log(`From Card component: ${task.description}`);
     setEditOpen(true);
     setCurrentTask(task);
   };

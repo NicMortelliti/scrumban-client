@@ -34,8 +34,12 @@ const App = () => {
   return (
     <Grommet theme={theme} full>
       <NavBar />
-      <Board tasks={tasks}  />
-      <EditForm />
+      <Board
+        tasks={tasks}
+        setCurrentTask={setCurrentTask}
+        setEditOpen={setEditOpen}
+      />
+      {editOpen && <EditForm setOpen={setEditOpen} task={currentTask} />}
     </Grommet>
   );
 }
