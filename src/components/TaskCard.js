@@ -12,7 +12,6 @@ import { FormPrevious, FormNext } from "grommet-icons";
 
 function TaskCard({ task, setCurrentTask, setEditOpen }) {
   const onEditOpen = () => {
-    console.log(`From Card component: ${task.description}`);
     setEditOpen(true);
     setCurrentTask(task);
   };

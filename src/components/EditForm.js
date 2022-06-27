@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Add, Close, Task } from "grommet-icons";
 import {
   Box,
@@ -10,81 +10,88 @@ import {
   TextArea,
   TextInput,
 } from "grommet";
+import EditFormTextInput from "../components/EditFormTextInput";
+import EditFormSelect from "../components/EditFormSelect";
 
-// Import contexts
-import { EditOpenContext } from "../context/editOpen";
-import { CurrentTaskContext } from "../context/currentTask";
+function EditForm({ setOpen, task, url }) {
+  const [users, setUsers] = useState([]);
 
-function EditForm() {
-  const [select, setSelect] = useState("");
-  const [task, setTask] = useState();
-  const { editOpen, setEditOpen } = useContext(EditOpenContext);
-  const { currentTask } = useContext(CurrentTaskContext);
-
-  const onClose = () => setEditOpen(undefined);
+  const [formData, setFormData] = useState({
+    id: task.id,
+    description: task.description,
+    points: task.story_points,
+    due: task.due_date,
+    assigned: task.username,
+  });
 
   useEffect(() => {
-    setTask(currentTask);
-  }, [currentTask]);
+    fetch(`${url}/users`)
+      .then((r) => r.json())
+      .then((data) => setUsers(data));
+  }, []);
 
-  const handleDescriptionChange = (e) => {
-    const newTask = { ...task, description: e.target.value };
-    setTask(newTask);
+  const onClose = () => setOpen(false);
+
+  // Handle change function for text fields.
+  // Dynamically sets object key:value depending
+  // on the component that calls the function.
+  const handleTextChange = (e) => {
+    const newTask = { ...task, [e.target.name]: e.target.value };
+    setFormData(newTask);
   };
 
-  const handlePointsChange = (e) => {
-    const newTask = { ...task, story_points: e.target.value };
-    setTask(newTask);
+  const handleUserSelectChange = (e) => {
+    const newTask = { ...task, [task.user.first_name]: e.target.value };
+    setFormData(newTask);
   };
 
   return (
     <Box fill align="center" justify="center">
-      {editOpen && (
-        <Layer
-          position="right"
-          full="vertical"
-          modal
-          onClickOutside={onClose}
-          onEsc={onClose}>
-          <Box
-            as="form"
-            fill="vertical"
-            overflow="auto"
-            width="medium"
-            pad="medium"
-            onSubmit={onclose}>
-            <Box flex={false} direction="row" justify="between">
-              <Heading level={2} margin="none">
-                Task ID: {task.id}
-              </Heading>
-              <Button icon={<Close />} onClick={onClose} />
-            </Box>
-            <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
-              <FormField label="First">
-                <TextInput
-                  value={task.description}
-                  onChange={handleDescriptionChange}
-                />
-              </FormField>
-              <FormField label="Story Points:">
-                <TextInput
-                  value={task.story_points}
-                  onChange={handlePointsChange}
-                />
-              </FormField>
-              <FormField label="Due Date:">
-                <TextArea />
-              </FormField>
-              <FormField label="Assigned To:">
-                <TextArea />
-              </FormField>
-            </Box>
-            <Box flex={false} as="footer" align="start">
-              <Button type="submit" label="Submit" onClick={onClose} primary />
-            </Box>
+      <Layer
+        position="right"
+        full="vertical"
+        modal
+        onClickOutside={onClose}
+        onEsc={onClose}>
+        <Box
+          as="form"
+          fill="vertical"
+          overflow="auto"
+          width="medium"
+          pad="medium"
+          onSubmit={onclose}>
+          <Box flex={false} direction="row" justify="between">
+            <Heading level={2} margin="none">
+              Task ID: {formData.id}
+            </Heading>
+            <Button icon={<Close />} onClick={onClose} />
           </Box>
-        </Layer>
-      )}
+          <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
+            <EditFormTextInput
+              label="Description"
+              value={formData.description}
+              setValue={handleTextChange}
+            />
+            <EditFormTextInput
+              label="Points"
+              value={formData.points}
+              setValue={handleTextChange}
+            />
+            <FormField label="Due Date:">
+              <TextArea />
+            </FormField>
+            <EditFormSelect
+              label="Assigned to"
+              options={users}
+              value={formData.assigned}
+              setValue={handleUserSelectChange}
+            />
+          </Box>
+          <Box flex={false} as="footer" align="start">
+            <Button type="submit" label="Submit" onClick={onClose} primary />
+          </Box>
+        </Box>
+      </Layer>
     </Box>
   );
 }
