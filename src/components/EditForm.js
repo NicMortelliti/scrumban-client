@@ -77,8 +77,8 @@ function EditForm({ setOpen, task, url }) {
               setValue={handleTextChange}
             />
             <EditFormDatePick
-              label="DueDate"
-              value={formData.due_date}
+              label="Due Date"
+              value={formData.due}
               setValue={handleDateChange}
             />
             <EditFormSelect
