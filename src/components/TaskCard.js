@@ -8,7 +8,6 @@ import {
   Heading,
   Text,
 } from "grommet";
-import { FormPrevious, FormNext } from "grommet-icons";
 
 function TaskCard({ task, setCurrentTask, setEditOpen }) {
   const onEditOpen = () => {

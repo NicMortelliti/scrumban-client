@@ -4,8 +4,10 @@ import TaskCard from "./TaskCard";
 
 function CardStack({ stack, stackTasks, setCurrentTask, setEditOpen }) {
   return (
-    <Box gap="medium">
-      <Heading level={3}>{stack}</Heading>
+    <Box gap="small" align="center">
+      <Heading level={3} size="small" margin="xxsmall" color="neutral-3">
+        {stack}
+      </Heading>
       {stackTasks.map((task) => (
         <TaskCard
           key={task.id}
