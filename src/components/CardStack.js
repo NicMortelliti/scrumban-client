@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Heading } from "grommet";
 import TaskCard from "./TaskCard";
 
-function CardStack({ stack, stackTasks, setEditOpen }) {
+function CardStack({ stack, stackTasks, setCurrentTask, setEditOpen }) {
   return (
     <Box>
       <Heading level={3}>{stack}</Heading>
@@ -10,6 +10,7 @@ function CardStack({ stack, stackTasks, setEditOpen }) {
         <TaskCard
           key={task.id}
           task={task}
+          setCurrentTask={setCurrentTask}
           setEditOpen={setEditOpen}
         />
       ))}

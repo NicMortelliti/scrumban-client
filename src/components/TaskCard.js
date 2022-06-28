@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Button, Card, CardBody, CardFooter, CardHeader, Text } from "grommet";
 import { FormPrevious, FormNext } from "grommet-icons";
-import { CurrentTaskContext } from "../context/currentTask";
 
-function TaskCard({ task, setEditOpen }) {
-  const { setCurrentTask } = useContext(CurrentTaskContext);
-
+function TaskCard({ task, setCurrentTask, setEditOpen }) {
   const onEditOpen = () => {
     setEditOpen(true);
     setCurrentTask(task);

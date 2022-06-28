@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grommet } from "grommet";
 import NavBar from "./NavBar";
 import Board from "./Board";
 import EditForm from "./EditForm";
-import { TasksContext } from "../context/tasks";
 
 // Set server URL
 const URL = `${process.env.REACT_APP_API_URL}`;
 
+// Set application branding
 const theme = {
   global: {
     colors: {
@@ -23,7 +23,8 @@ const theme = {
 
 const App = () => {
   const [editOpen, setEditOpen] = useState(false);
-  const { setTasks } = useContext(TasksContext);
+  const [tasks, setTasks] = useState([]);
+  const [currentTask, setCurrentTask] = useState();
 
   // Async data fetch from server upon app loading
   useEffect(() => {
@@ -35,8 +36,14 @@ const App = () => {
   return (
     <Grommet theme={theme} full>
       <NavBar />
-      <Board setEditOpen={setEditOpen} />
-      {editOpen && <EditForm setOpen={setEditOpen} url={URL} />}
+      <Board
+        setCurrentTask={setCurrentTask}
+        setEditOpen={setEditOpen}
+        tasks={tasks}
+      />
+      {editOpen && (
+        <EditForm currentTask={currentTask} setOpen={setEditOpen} url={URL} />
+      )}
     </Grommet>
   );
 };

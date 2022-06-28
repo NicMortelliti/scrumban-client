@@ -7,18 +7,18 @@ import EditFormSelect from "../components/EditFormSelect";
 import EditFormDatePick from "../components/EditFormDatePick";
 import EditDelete from "./EditDelete";
 
-function EditForm({ setOpen, task, url }) {
+function EditForm({ currentTask, setOpen, url }) {
   const [users, setUsers] = useState([]);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   // const currentTask = [...task];
   const [formData, setFormData] = useState({
-    ...task,
-    id: task.id,
-    description: task.description,
-    points: task.story_points,
-    due_date: task.due_date,
-    assigned_to: task.user.username,
+    ...currentTask,
+    id: currentTask.id,
+    description: currentTask.description,
+    points: currentTask.story_points,
+    due_date: currentTask.due_date,
+    assigned_to: currentTask.user.username,
   });
 
   // Populate users array

@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "grommet";
 import CardStack from "./CardStack";
-import { CurrentTaskContext } from "../context/currentTask";
-import { TasksContext } from "../context/tasks";
 
-function Board({ setEditOpen }) {
+function Board({ setCurrentTask, setEditOpen, tasks }) {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [peerReview, setPeerReview] = useState([]);
   const [closed, setClosed] = useState([]);
 
   // Set up contexts
-  const { setCurrentTask } = useContext(CurrentTaskContext);
-  const { tasks } = useContext(TasksContext);
 
   // Categorize tasks according to kanban state
   // 1 = backlog
@@ -20,6 +16,7 @@ function Board({ setEditOpen }) {
   // 3 = Peer Review
   // 4 = Closed
   useEffect(() => {
+    console.log(`Length of tasks object: ${tasks.length}`);
     let newBacklog = [];
     let newInProgress = [];
     let newPeerReview = [];
@@ -34,6 +31,7 @@ function Board({ setEditOpen }) {
       } else if (task.state === 4) {
         newClosed = [...newClosed, task];
       }
+      return null;
     });
     setBacklog(newBacklog);
     setInProgress(newInProgress);
@@ -53,24 +51,28 @@ function Board({ setEditOpen }) {
       <CardStack
         stack={"Backlog"}
         stackTasks={backlog}
+        setCurrentTask={setCurrentTask}
         setEditOpen={setEditOpen}
       />{" "}
       {/* Backlog */}
       <CardStack
         stack={"In Progress"}
         stackTasks={inProgress}
+        setCurrentTask={setCurrentTask}
         setEditOpen={setEditOpen}
       />
       {/* In-Progress */}
       <CardStack
         stack={"Peer Review"}
         stackTasks={peerReview}
+        setCurrentTask={setCurrentTask}
         setEditOpen={setEditOpen}
       />
       {/* Peer Review */}
       <CardStack
         stack={"Closed"}
         stackTasks={closed}
+        setCurrentTask={setCurrentTask}
         setEditOpen={setEditOpen}
       />
       {/* Closed */}
