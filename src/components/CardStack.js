@@ -4,7 +4,7 @@ import TaskCard from "./TaskCard";
 
 function CardStack({ stack, stackTasks, setCurrentTask, setEditOpen }) {
   return (
-    <Box>
+    <Box gap="medium">
       <Heading level={3}>{stack}</Heading>
       {stackTasks.map((task) => (
         <TaskCard
