@@ -7,7 +7,7 @@ import EditFormSelect from "../components/EditFormSelect";
 import EditFormDatePick from "../components/EditFormDatePick";
 import EditDelete from "./EditDelete";
 
-function EditForm({ currentTask, setOpen, url }) {
+function EditForm({ currentTask, setOpen, url, handleEditFormChange }) {
   const [users, setUsers] = useState([]);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
@@ -43,7 +43,6 @@ function EditForm({ currentTask, setOpen, url }) {
   };
 
   const handleDelete = (e) => {
-    console.log("Delete it!");
     setDeleteOpen(false);
     setOpen(false);
   };
@@ -56,7 +55,7 @@ function EditForm({ currentTask, setOpen, url }) {
       due_date: formData.due_date,
       story_points: formData.points,
       //project_id:
-      //user_id:
+      user_id: formData.user_id,
     };
 
     // Fetch Patch data to backend
@@ -66,12 +65,9 @@ function EditForm({ currentTask, setOpen, url }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(itemData),
-    }).then((r) => r.json());
-    // .then((newItem) => {
-    //   setData([...data, newItem]);
-    //   updateStates();
-    //   history.push(`/${currentAc}/${currentPhase}`);
-    // });
+    })
+      .then((r) => r.json())
+      .then(handleEditFormChange);
 
     onClose();
   };

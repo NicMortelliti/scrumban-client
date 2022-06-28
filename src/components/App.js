@@ -33,6 +33,9 @@ const App = () => {
       .then((data) => setTasks(data));
   }, []);
 
+  // Handle edit form change to tasks state
+  const editFormChange = () => console.log("Feature not implemented yet");
+
   return (
     <Grommet theme={theme} full>
       <NavBar />
@@ -42,7 +45,12 @@ const App = () => {
         tasks={tasks}
       />
       {editOpen && (
-        <EditForm currentTask={currentTask} setOpen={setEditOpen} url={URL} />
+        <EditForm
+          currentTask={currentTask}
+          setOpen={setEditOpen}
+          url={URL}
+          handleEditFormChange={editFormChange}
+        />
       )}
     </Grommet>
   );
