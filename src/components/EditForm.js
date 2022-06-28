@@ -5,9 +5,11 @@ import EditButton from "../components/EditButton";
 import EditFormTextInput from "../components/EditFormTextInput";
 import EditFormSelect from "../components/EditFormSelect";
 import EditFormDatePick from "../components/EditFormDatePick";
+import EditDelete from "./EditDelete";
 
 function EditForm({ setOpen, task, url }) {
   const [users, setUsers] = useState([]);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   // const currentTask = [...task];
   const [formData, setFormData] = useState({
@@ -19,6 +21,7 @@ function EditForm({ setOpen, task, url }) {
     assigned_to: task.user.username,
   });
 
+  // Populate users array
   useEffect(() => {
     fetch(`${url}/users`)
       .then((r) => r.json())
@@ -36,7 +39,13 @@ function EditForm({ setOpen, task, url }) {
   };
 
   const handleClick = (value) => {
-    console.log("Woah, did you mean to click that?");
+    setDeleteOpen(true);
+  };
+
+  const handleDelete = (e) => {
+    console.log("Delete it!");
+    setDeleteOpen(false);
+    setOpen(false);
   };
 
   const handleSubmit = (e) => {
@@ -135,6 +144,20 @@ function EditForm({ setOpen, task, url }) {
           </Box>
         </Box>
       </Layer>
+      {deleteOpen && (
+        <Layer
+          id="hello world"
+          position="center"
+          onClickOutside={() => setDeleteOpen(false)}
+          onEsc={() => setDeleteOpen(false)}>
+          <EditDelete
+            handleClick={handleDelete}
+            setOpen={() => setDeleteOpen(false)}
+            url={url}
+            id={formData.id}
+          />
+        </Layer>
+      )}
     </Box>
   );
 }
