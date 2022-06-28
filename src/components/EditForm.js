@@ -59,7 +59,7 @@ function EditForm({ setOpen, task, url }) {
       //user_id:
     };
 
-    // Fetch POST data to backend
+    // Fetch Patch data to backend
     fetch(`${url}/tasks/${formData.id}`, {
       method: "PATCH",
       headers: {

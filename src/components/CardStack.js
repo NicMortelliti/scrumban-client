@@ -2,15 +2,14 @@ import React from "react";
 import { Box, Heading } from "grommet";
 import TaskCard from "./TaskCard";
 
-function CardStack({ stack, tasks, setCurrentTask, setEditOpen }) {
+function CardStack({ stack, stackTasks, setEditOpen }) {
   return (
     <Box>
       <Heading level={3}>{stack}</Heading>
-      {tasks.map((task) => (
+      {stackTasks.map((task) => (
         <TaskCard
           key={task.id}
           task={task}
-          setCurrentTask={setCurrentTask}
           setEditOpen={setEditOpen}
         />
       ))}

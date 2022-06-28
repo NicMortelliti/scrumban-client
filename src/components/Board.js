@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Box, Grid } from "grommet";
+import React, { useContext, useEffect, useState } from "react";
+import { Grid } from "grommet";
 import CardStack from "./CardStack";
+import { CurrentTaskContext } from "../context/currentTask";
+import { TasksContext } from "../context/tasks";
 
-function Board({ tasks, setCurrentTask, setEditOpen }) {
+function Board({ setEditOpen }) {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [peerReview, setPeerReview] = useState([]);
   const [closed, setClosed] = useState([]);
+
+  // Set up contexts
+  const { setCurrentTask } = useContext(CurrentTaskContext);
+  const { tasks } = useContext(TasksContext);
 
   // Categorize tasks according to kanban state
   // 1 = backlog
@@ -46,29 +52,25 @@ function Board({ tasks, setCurrentTask, setEditOpen }) {
       pad="medium">
       <CardStack
         stack={"Backlog"}
-        tasks={backlog}
-        setCurrentTask={setCurrentTask}
+        stackTasks={backlog}
         setEditOpen={setEditOpen}
       />{" "}
       {/* Backlog */}
       <CardStack
         stack={"In Progress"}
-        tasks={inProgress}
-        setCurrentTask={setCurrentTask}
+        stackTasks={inProgress}
         setEditOpen={setEditOpen}
       />
       {/* In-Progress */}
       <CardStack
         stack={"Peer Review"}
-        tasks={peerReview}
-        setCurrentTask={setCurrentTask}
+        stackTasks={peerReview}
         setEditOpen={setEditOpen}
       />
       {/* Peer Review */}
       <CardStack
         stack={"Closed"}
-        tasks={closed}
-        setCurrentTask={setCurrentTask}
+        stackTasks={closed}
         setEditOpen={setEditOpen}
       />
       {/* Closed */}
