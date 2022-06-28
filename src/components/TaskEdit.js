@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TaskEditText from "./TaskEditText";
 
 function TaskEdit({ task, setEditOpen, data, setData }) {
   const [formData, setFormData] = useState({
@@ -12,11 +13,11 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
 
   // Update formData upon text field change
   const handleTextChange = (e) => {
-    console.log("Attempting to update state");
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    // setFormData({
+    //   ...formData,
+    //   [e.target.name]: e.target.value,
+    // });
+    setFormData({ name: e.target.value })
   };
 
   // Handle the submit
@@ -46,11 +47,17 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
   return (
     <div>
       <form>
-        <input
-          type="text"
-          name="description"
-          onChange={(e) => handleTextChange(e)}
+        <TaskEditText
+          label={"Description"}
+          name={"description"}
           value={formData.description}
+          handleChange={handleTextChange}
+        />
+        <TaskEditText
+          label={"Points"}
+          name={"story_points"}
+          value={formData.story_points}
+          handleChange={handleTextChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
