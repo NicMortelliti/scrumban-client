@@ -54,7 +54,7 @@ function TaskEdit({
       .then((deletedTask) => onDeleteTask(deletedTask.id));
   };
 
-  // Handle server submit
+  // Handle server patch
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`${url}/tasks/${task.id}`, {
