@@ -5,8 +5,11 @@ function TaskCard({ task, data, setData }) {
   const [openEdit, setOpenEdit] = useState(false);
 
   return (
-    <div>
-      <p key={task.id}>{task.description}</p>
+    <div key={task.id}>
+      <h3>{task.description}</h3>
+      <p>Points: {task.story_points}</p>
+      <p>Due: {task.due_date.slice(0, 10)}</p>
+      <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
       <button onClick={() => setOpenEdit(true)}>Edit</button>
       {openEdit && (
         <TaskEdit
