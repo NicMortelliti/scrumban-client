@@ -1,6 +1,13 @@
 import React from "react";
 
-function TaskEditSelect({ label, name, value, options, handleChange }) {
+function TaskEditSelect({
+  label,
+  name,
+  value,
+  options,
+  displayAttribute,
+  handleChange,
+}) {
   return (
     <label>
       {`${label}:`}
@@ -8,7 +15,7 @@ function TaskEditSelect({ label, name, value, options, handleChange }) {
         {options.map((each) => {
           return (
             <option key={each.id} name={each.id} value={each.id}>
-              {each.username}
+              {each[displayAttribute]}
             </option>
           );
         })}

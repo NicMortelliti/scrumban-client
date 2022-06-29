@@ -111,6 +111,7 @@ function TaskEdit({
           name={"user.id"}
           value={formData.user.id ? formData.user.id : 0}
           options={users}
+          displayAttribute="username"
           handleChange={handleSelectChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>
