@@ -114,7 +114,7 @@ function TaskEdit({
           displayAttribute="username"
           handleChange={handleSelectChange}
         />
-        <button onClick={() => setEditOpen(false)}>Cancel</button>
+        <button onClick={(e) => setEditOpen(e)}>Cancel</button>
         <button onClick={handleDelete}>Delete</button>
         <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
       </form>
