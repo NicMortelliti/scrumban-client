@@ -9,7 +9,12 @@ function TaskCard({ task, data, setData }) {
       <p key={task.id}>{task.description}</p>
       <button onClick={() => setOpenEdit(true)}>Edit</button>
       {openEdit && (
-        <TaskEdit task={task} setOpenEdit={setOpenEdit} data={data} setData={setData} />
+        <TaskEdit
+          task={task}
+          setOpenEdit={setOpenEdit}
+          data={data}
+          setData={setData}
+        />
       )}
     </div>
   );

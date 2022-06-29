@@ -13,11 +13,10 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
 
   // Update formData upon text field change
   const handleTextChange = (e) => {
-    // setFormData({
-    //   ...formData,
-    //   [e.target.name]: e.target.value,
-    // });
-    setFormData({ name: e.target.value })
+    // Must spread the formData with setter otherwise
+    // we end up setting all other attributes
+    // to undefined.
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   // Handle the submit
@@ -29,11 +28,7 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
       if (eachTask.id === formData.id) {
         return {
           ...eachTask,
-          description: formData.description,
-          user_id: formData.user_id,
-          username: formData.username,
-          story_points: formData.story_points,
-          due_date: formData.due_data,
+          ...formData,
         };
       } else {
         return eachTask;

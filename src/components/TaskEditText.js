@@ -7,8 +7,8 @@ function TaskEditText({ label, name, value, handleChange }) {
       <input
         type="text"
         name={name}
-        onChange={(e) => handleChange(e)}
         value={value}
+        onChange={(e) => handleChange(e)}
       />
     </label>
   );
