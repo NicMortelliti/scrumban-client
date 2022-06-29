@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
-function TaskEdit({ task, setEditOpen, data, setData }) {
+function TaskEdit({ task, setEditOpen, data, users, setData }) {
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
@@ -19,10 +20,14 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Update formData upon select field change
+  const handleSelectChange = (e) => {
+    console.log("Feature not fully implemented");
+  };
+
   // Handle the submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Find and update applicable task with form data
     const newData = data.map((eachTask) => {
       if (eachTask.id === formData.id) {
@@ -34,7 +39,6 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
         return eachTask;
       }
     });
-
     // Set local data set with the updated data set
     setData(newData);
   };
@@ -53,6 +57,13 @@ function TaskEdit({ task, setEditOpen, data, setData }) {
           name={"story_points"}
           value={formData.story_points}
           handleChange={handleTextChange}
+        />
+        <TaskEditSelect
+          label={"Assign to"}
+          name={"user.id"}
+          value={formData.user ? formData.user.username : "unassigned"}
+          options={users.map((each) => each.username)}
+          handleChange={handleSelectChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
