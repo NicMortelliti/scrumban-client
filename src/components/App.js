@@ -39,7 +39,6 @@ const App = () => {
 
   // Handle opening/closing of new task form
   const handleNewTaskOpen = (e) => {
-    e.preventDefault();
     setNewTaskOpen(!newTaskOpen);
   };
 
