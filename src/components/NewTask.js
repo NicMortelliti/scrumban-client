@@ -3,19 +3,19 @@ import TaskEditText from "./TaskEditText";
 import TaskEditSelect from "./TaskEditSelect";
 import DateSelect from "./DateSelect";
 
-function NewTask({ users, projects, handleClose }) {
+function NewTask({ users, projects, data, setData, handleClose, url }) {
   const [formData, setFormData] = useState({
     description: "",
-    user: {
-      id: "",
-      username: "",
-    },
     story_points: "",
+    due_date: "",
     project: {
       id: "",
       name: "",
     },
-    due_date: "",
+    user: {
+      id: "",
+      username: "",
+    },
   });
 
   // Update formData upon text field change
@@ -58,8 +58,32 @@ function NewTask({ users, projects, handleClose }) {
     });
   };
 
-  const handleSubmit = () => {
-    console.log("not yet implemented");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch(`${url}/tasks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: formData.description,
+        due_date: formData.due_date,
+        story_points: formData.story_points,
+        project_id: formData.project.id,
+        user_id: formData.user.id,
+      }),
+    })
+      .then((r) => r.json())
+      .then((newTask) => onNewTask(newTask));
+
+    // Close form
+    handleClose(e);
+  };
+
+  const onNewTask = (newTask) => {
+    const newData = [...data, newTask];
+    setData(newData);
   };
 
   return (

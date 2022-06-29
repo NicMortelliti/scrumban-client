@@ -64,7 +64,10 @@ const App = () => {
         <NewTask
           users={users}
           projects={projects}
+          data={data}
+          setData={setData}
           handleClose={handleNewTaskOpen}
+          url={URL}
         />
       )
     );
