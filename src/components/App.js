@@ -9,6 +9,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [newTaskOpen, setNewTaskOpen] = useState(false);
 
   // Fetch data from server
   useEffect(() => {
@@ -32,6 +33,12 @@ const App = () => {
     });
   }, []);
 
+  // Handle opening/closing of new task form
+  const handleNewTaskOpen = (e) => {
+    e.preventDefault();
+    setNewTaskOpen(!newTaskOpen);
+  };
+
   // Display tasks
   const DisplayItems = () => {
     return (
@@ -50,6 +57,19 @@ const App = () => {
     );
   };
 
+  // Display New Task Form
+  const DisplayNewTaskForm = () => {
+    return (
+      newTaskOpen && (
+        <NewTask
+          users={users}
+          projects={projects}
+          handleClose={handleNewTaskOpen}
+        />
+      )
+    );
+  };
+
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
@@ -58,9 +78,9 @@ const App = () => {
 
   return (
     <div>
-      <NavBar />
-      {/* <DisplayItems /> */}
-      <NewTask users={users} projects={projects} />
+      <NavBar handleOpen={handleNewTaskOpen} />
+      <DisplayNewTaskForm />
+      <DisplayItems />
     </div>
   );
 };

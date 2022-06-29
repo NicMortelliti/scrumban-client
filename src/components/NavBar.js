@@ -1,7 +1,7 @@
 import React from "react";
 
-function NavBar() {
-  return <button>New Task</button>;
+function NavBar({ handleOpen }) {
+  return <button onClick={(e) => handleOpen(e)}>New Task</button>;
 }
 
 export default NavBar;

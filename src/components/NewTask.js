@@ -3,7 +3,7 @@ import TaskEditText from "./TaskEditText";
 import TaskEditSelect from "./TaskEditSelect";
 import DateSelect from "./DateSelect";
 
-function NewTask({ users, projects }) {
+function NewTask({ users, projects, handleClose }) {
   const [formData, setFormData] = useState({
     description: "",
     user: {
@@ -58,6 +58,10 @@ function NewTask({ users, projects }) {
     });
   };
 
+  const handleSubmit = () => {
+    console.log("not yet implemented");
+  };
+
   return (
     <div>
       <h2>Create New Task</h2>
@@ -96,6 +100,8 @@ function NewTask({ users, projects }) {
           value={formData.due_date.slice(0, 10)}
           handleChange={handleDateChange}
         />
+        <button onClick={(e) => handleClose(e)}>Cancel</button>
+        <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
       </form>
     </div>
   );
