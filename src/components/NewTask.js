@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TaskEditText from "./TaskEditText";
 import TaskEditSelect from "./TaskEditSelect";
+import DateSelect from "./DateSelect";
 
 function NewTask({ users, projects }) {
   const [formData, setFormData] = useState({
@@ -49,6 +50,14 @@ function NewTask({ users, projects }) {
     setFormData({ ...formData, project: { ...projectMatch[0] } });
   };
 
+  // Update due date in formData
+  const handleDateChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: `${e.target.value}T00:00:00.000Z`,
+    });
+  };
+
   return (
     <div>
       <h2>Create New Task</h2>
@@ -80,6 +89,12 @@ function NewTask({ users, projects }) {
           options={projects}
           displayAttribute="name"
           handleChange={handleProjectSelectChange}
+        />
+        <DateSelect
+          label="Due Date"
+          name="due_date"
+          value={formData.due_date.slice(0, 10)}
+          handleChange={handleDateChange}
         />
       </form>
     </div>
