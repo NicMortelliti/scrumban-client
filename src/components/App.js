@@ -41,10 +41,17 @@ const App = () => {
           data={data}
           users={users}
           setData={setData}
+          onDeleteTask={handleDeleteTask}
           url={URL}
         />
       ))
     );
+  };
+
+  // Delete tasks
+  const handleDeleteTask = (id) => {
+    const updatedData = data.filter((eachTask) => eachTask.id !== id);
+    setData(updatedData);
   };
 
   return (

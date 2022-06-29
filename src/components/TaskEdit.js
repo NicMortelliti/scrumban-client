@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
-function TaskEdit({ task, setEditOpen, data, users, setData, url }) {
+function TaskEdit({
+  task,
+  setEditOpen,
+  data,
+  users,
+  setData,
+  onDeleteTask,
+  url,
+}) {
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
@@ -37,10 +45,19 @@ function TaskEdit({ task, setEditOpen, data, users, setData, url }) {
     setFormData({ ...formData, user: { ...userMatch[0] } });
   };
 
+  // Handle server delete
+  const handleDelete = (e) => {
+    e.preventDefault();
+    fetch(`${url}/tasks/${task.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((deletedTask) => onDeleteTask(deletedTask.id));
+  };
+
   // Handle server submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`${url}/tasks/${task.id}`);
     fetch(`${url}/tasks/${task.id}`, {
       method: "PATCH",
       headers: {
@@ -98,6 +115,7 @@ function TaskEdit({ task, setEditOpen, data, users, setData, url }) {
           handleChange={handleSelectChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>
+        <button onClick={handleDelete}>Delete</button>
         <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
       </form>
     </div>

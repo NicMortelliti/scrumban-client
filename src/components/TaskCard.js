@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TaskEdit from "./TaskEdit";
 
-function TaskCard({ task, data, users, setData, url }) {
+function TaskCard({ task, data, users, setData, onDeleteTask, url }) {
   const [openEdit, setOpenEdit] = useState(false);
 
   return (
@@ -20,6 +20,7 @@ function TaskCard({ task, data, users, setData, url }) {
           data={data}
           users={users}
           setData={setData}
+          onDeleteTask={onDeleteTask}
           url={url}
         />
       )}
