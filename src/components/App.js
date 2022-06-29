@@ -41,6 +41,7 @@ const App = () => {
           data={data}
           users={users}
           setData={setData}
+          url={URL}
         />
       ))
     );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
-function TaskEdit({ task, setEditOpen, data, users, setData }) {
+function TaskEdit({ task, setEditOpen, data, users, setData, url }) {
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
@@ -13,6 +13,7 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
       username: task.user.username,
     },
     story_points: task.story_points,
+    project_id: task.project_id,
     due_date: task.due_date,
   });
 
@@ -36,9 +37,29 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
     setFormData({ ...formData, user: { ...userMatch[0] } });
   };
 
-  // Handle the submit
+  // Handle server submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(`${url}/tasks/${task.id}`);
+    fetch(`${url}/tasks/${task.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: formData.description,
+        due_date: formData.due_date,
+        story_points: formData.story_points,
+        project_id: formData.project_id,
+        user_id: formData.user.id,
+      }),
+    })
+      .then((r) => r.json())
+      .then((updatedTask) => onUpdateTask(updatedTask));
+  };
+
+  // Handle updating submitted task
+  const onUpdateTask = (updatedTask) => {
     // Find and update applicable task with form data
     const newData = data.map((eachTask) => {
       if (eachTask.id === formData.id) {

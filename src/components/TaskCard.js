@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import TaskEdit from "./TaskEdit";
 
-function TaskCard({ task, data, users, setData }) {
+function TaskCard({ task, data, users, setData, url }) {
   const [openEdit, setOpenEdit] = useState(false);
 
   return (
     <div key={task.id}>
-      <h3>{task.description}</h3>
+      <h3>
+        Task {task.id}: {task.description}
+      </h3>
       <p>Points: {task.story_points}</p>
       <p>Due: {task.due_date.slice(0, 10)}</p>
       <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
@@ -18,6 +20,7 @@ function TaskCard({ task, data, users, setData }) {
           data={data}
           users={users}
           setData={setData}
+          url={url}
         />
       )}
     </div>
