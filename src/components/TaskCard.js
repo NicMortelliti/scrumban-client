@@ -18,6 +18,7 @@ function TaskCard({ task, data, users, setData, onDeleteTask, url }) {
     <span>
       <Button
         label="Edit"
+        icon="pi pi-pencil"
         className="p-button-text"
         onClick={(e) => handleEditTaskOpen(e)}
       />
