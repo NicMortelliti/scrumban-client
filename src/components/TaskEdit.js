@@ -61,7 +61,7 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
         <TaskEditSelect
           label={"Assign to"}
           name={"user.id"}
-          value={formData.user ? formData.user.username : "unassigned"}
+          value={formData.username ? formData.username : "unassigned"}
           options={users.map((each) => each.username)}
           handleChange={handleSelectChange}
         />
