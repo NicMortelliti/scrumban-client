@@ -39,7 +39,6 @@ function TaskEdit({
 
     // Match selected user ID with that found in the users state
     const userMatch = users.filter((user) => user.id === selectedId);
-    console.log(userMatch);
 
     // Update user state with found user info
     setFormData({ ...formData, user: { ...userMatch[0] } });
