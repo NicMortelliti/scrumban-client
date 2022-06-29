@@ -70,6 +70,7 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
         description: formData.description,
         due_date: formData.due_date,
         story_points: formData.story_points,
+        state: 1,
         project_id: formData.project.id,
         user_id: formData.user.id,
       }),
