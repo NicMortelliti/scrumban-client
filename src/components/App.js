@@ -3,6 +3,10 @@ import TaskCard from "./TaskCard";
 import NavBar from "./NavBar";
 import NewTask from "./NewTask";
 
+import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
+import "primereact/resources/primereact.min.css"; //core css
+import "primeicons/primeicons.css"; //icons
+
 const URL = "http://localhost:9292";
 
 const App = () => {
