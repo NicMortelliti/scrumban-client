@@ -66,7 +66,7 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
           handleChange={handleSelectChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>
-        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+        <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
       </form>
     </div>
   );
