@@ -6,8 +6,12 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
-    user_id: task.user_id,
-    username: task.user.username,
+    user: {
+      id: task.user_id,
+      first_name: task.user.first_name,
+      last_name: task.user.last_name,
+      username: task.user.username,
+    },
     story_points: task.story_points,
     due_date: task.due_date,
   });
@@ -22,7 +26,14 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
 
   // Update formData upon select field change
   const handleSelectChange = (e) => {
-    console.log("Feature not fully implemented");
+    const selectedId = parseInt(e.target.value);
+
+    // Match selected user ID with that found in the users state
+    const userMatch = users.filter((user) => user.id === selectedId);
+    console.log(userMatch);
+
+    // Update user state with found user info
+    setFormData({ ...formData, user: { ...userMatch[0] } });
   };
 
   // Handle the submit
@@ -61,8 +72,8 @@ function TaskEdit({ task, setEditOpen, data, users, setData }) {
         <TaskEditSelect
           label={"Assign to"}
           name={"user.id"}
-          value={formData.username ? formData.username : "unassigned"}
-          options={users.map((each) => each.username)}
+          value={formData.user.id ? formData.user.id : 0}
+          options={users}
           handleChange={handleSelectChange}
         />
         <button onClick={() => setEditOpen(false)}>Cancel</button>

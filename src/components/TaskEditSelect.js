@@ -7,8 +7,8 @@ function TaskEditSelect({ label, name, value, options, handleChange }) {
       <select name={name} value={value} onChange={(e) => handleChange(e)}>
         {options.map((each) => {
           return (
-            <option key={each} value={each}>
-              {each}
+            <option key={each.id} name={each.id} value={each.id}>
+              {each.username}
             </option>
           );
         })}
