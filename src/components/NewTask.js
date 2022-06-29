@@ -10,11 +10,13 @@ function NewTask({ users, projects }) {
       username: "",
     },
     story_points: "",
-    project_id: "",
+    project: {
+      id: "",
+      name: "",
+    },
     due_date: "",
   });
 
-  console.log(projects);
   // Update formData upon text field change
   const handleTextChange = (e) => {
     // Must spread the formData with setter otherwise
@@ -23,7 +25,7 @@ function NewTask({ users, projects }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Update formData upon select field change
+  // Update user formData upon select field change
   const handleUserSelectChange = (e) => {
     const selectedId = parseInt(e.target.value);
 
@@ -34,7 +36,7 @@ function NewTask({ users, projects }) {
     setFormData({ ...formData, user: { ...userMatch[0] } });
   };
 
-  // Update formData upon select field change
+  // Update project formData upon select field change
   const handleProjectSelectChange = (e) => {
     const selectedId = parseInt(e.target.value);
 
@@ -44,7 +46,7 @@ function NewTask({ users, projects }) {
     );
 
     // Update user state with found user info
-    setFormData({ ...formData, project_id: projectMatch[0].id });
+    setFormData({ ...formData, project: { ...projectMatch[0] } });
   };
 
   return (
@@ -74,9 +76,7 @@ function NewTask({ users, projects }) {
         <TaskEditSelect
           label="Project"
           name="project_id"
-          value={projects.filter(
-            (project) => project.id === formData.project_id
-          )}
+          value={formData.project.id}
           options={projects}
           displayAttribute="name"
           handleChange={handleProjectSelectChange}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TaskCard from "./TaskCard";
 import NavBar from "./NavBar";
+import NewTask from "./NewTask";
 
 const URL = "http://localhost:9292";
 
@@ -58,7 +59,8 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <DisplayItems />
+      {/* <DisplayItems /> */}
+      <NewTask users={users} projects={projects} />
     </div>
   );
 };
