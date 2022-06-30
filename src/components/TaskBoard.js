@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import TaskCard from "./TaskCard";
 
 import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Stack from "react-bootstrap/Stack";
 
@@ -41,9 +42,9 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
   const RenderColumns = () => {
     return (
       <Container fluid>
-        <Row>
+        <Row xs={1} md={4} className="g-4">
           {[backlog, inProgress, peerReview, closed].map((phase, index) => (
-            <Stack key={index} gap={2} className="col-md-1 mx-auto">
+            <Col key={index}>
               {phase.map((eachTask) => (
                 <TaskCard
                   key={eachTask.id}
@@ -51,7 +52,7 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
                   handleEditOpen={handleEditOpen}
                 />
               ))}
-            </Stack>
+            </Col>
           ))}
         </Row>
       </Container>
