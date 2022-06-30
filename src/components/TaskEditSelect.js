@@ -13,7 +13,11 @@ function TaskEditSelect({
 }) {
   return (
     <FloatingLabel label={`${label}:`}>
-      <Form.Select name={name} value={value} onChange={(e) => handleChange(e)}>
+      <Form.Select
+        name={name}
+        value={value}
+        className="my-3"
+        onChange={(e) => handleChange(e)}>
         {options.map((each) => {
           return (
             <option key={each.id} name={each.id} value={each.id}>

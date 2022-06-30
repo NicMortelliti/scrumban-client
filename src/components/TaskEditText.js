@@ -10,7 +10,7 @@ function TaskEditText({ label, name, value, handleChange }) {
         <Form.Control
           type="text"
           name={name}
-          className="mx-3 my-3"
+          className="my-3"
           value={value}
           onChange={(e) => handleChange(e)}
         />
