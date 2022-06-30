@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import TaskCard from "./TaskCard";
 
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Stack from "react-bootstrap/Stack";
 
-function TaskBoard({ data, users, projects }) {
+function TaskBoard({ data, users, projects, handleEditOpen }) {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [peerReview, setPeerReview] = useState([]);
@@ -40,43 +38,45 @@ function TaskBoard({ data, users, projects }) {
     setClosed(newClosed);
   }, [data]);
 
-  const Ccard = () => {
-    return (
-      <Card style={{ width: "flex" }}>
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-    );
-  };
-
   const RenderColumns = () => {
     return (
       <Container fluid>
         <Row>
           <Stack gap={2} className="col-md-1 mx-auto">
             {backlog.map((eachTask) => (
-              <TaskCard key={eachTask.id} task={eachTask} />
+              <TaskCard
+                key={eachTask.id}
+                task={eachTask}
+                handleEditOpen={handleEditOpen}
+              />
             ))}
           </Stack>
           <Stack gap={2} className="col-md-1 mx-auto">
             {inProgress.map((eachTask) => (
-              <TaskCard key={eachTask.id} task={eachTask} />
+              <TaskCard
+                key={eachTask.id}
+                task={eachTask}
+                handleEditOpen={handleEditOpen}
+              />
             ))}
           </Stack>
           <Stack gap={2} className="col-md-1 mx-auto">
-            <Ccard />
-            <Ccard />
-            <Ccard />
+            {peerReview.map((eachTask) => (
+              <TaskCard
+                key={eachTask.id}
+                task={eachTask}
+                handleEditOpen={handleEditOpen}
+              />
+            ))}
           </Stack>
           <Stack gap={2} className="col-md-1 mx-auto">
-            <Ccard />
-            <Ccard />
+            {closed.map((eachTask) => (
+              <TaskCard
+                key={eachTask.id}
+                task={eachTask}
+                handleEditOpen={handleEditOpen}
+              />
+            ))}
           </Stack>
         </Row>
       </Container>

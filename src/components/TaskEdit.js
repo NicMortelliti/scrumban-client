@@ -1,16 +1,19 @@
+import { Offcanvas } from "bootstrap";
 import React, { useState } from "react";
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
 function TaskEdit({
   task,
-  setEditOpen,
+  setOpenEdit,
   data,
-  users,
   setData,
+  users,
+  projects,
   onDeleteTask,
   url,
 }) {
+  console.log(task);
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
@@ -92,8 +95,11 @@ function TaskEdit({
   };
 
   return (
-    <div>
-      <form>
+    <Offcanvas autofocus={true}>
+      {/* <Offcanvas.Header closeButton>
+        <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+      </Offcanvas.Header> */}
+      {/* <form>
         <TaskEditText
           label={"Description"}
           name={"description"}
@@ -114,11 +120,11 @@ function TaskEdit({
           displayAttribute="username"
           handleChange={handleSelectChange}
         />
-        <button onClick={(e) => setEditOpen(e)}>Cancel</button>
+        <button onClick={(e) => setOpenEdit(e)}>Cancel</button>
         <button onClick={handleDelete}>Delete</button>
         <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
-      </form>
-    </div>
+      </form> */}
+    </Offcanvas>
   );
 }
 

@@ -5,17 +5,15 @@ import NewTask from "./NewTask";
 import TaskBoard from "./TaskBoard";
 import TaskEdit from "./TaskEdit";
 
-import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
-import "primereact/resources/primereact.min.css"; //core css
-import "primeicons/primeicons.css"; //icons
-
 const URL = "http://localhost:9292";
 
 const App = () => {
+  const [currentTask, setCurrentTask] = useState();
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [newTaskOpen, setNewTaskOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   // Fetch data from server
   useEffect(() => {
@@ -66,26 +64,34 @@ const App = () => {
     setData(updatedData);
   };
 
-  // Display Task Edit Panel
-  // const RenderTaskEdit = () => {
-  //   openEdit && (
-  //     <TaskEdit
-  //       task={task}
-  //       setOpenEdit={handleEditTaskOpen}
-  //       data={data}
-  //       users={users}
-  //       setData={setData}
-  //       onDeleteTask={onDeleteTask}
-  //       url={url}
-  //     />
-  //   );
-  // };
+  const handleEditOpen = (e, task) => {
+    e.preventDefault();
+    setCurrentTask(task);
+    setOpenEdit(true);
+  };
 
   return (
     <div>
       <NavBar handleOpen={handleNewTaskOpen} />
       <DisplayNewTaskForm />
-      <TaskBoard data={data} users={users} projects={projects} />
+      <TaskBoard
+        data={data}
+        users={users}
+        projects={projects}
+        handleEditOpen={handleEditOpen}
+      />
+      {openEdit && (
+        <TaskEdit
+          task={currentTask}
+          setOpenEdit={setOpenEdit}
+          data={data}
+          setData={setData}
+          users={users}
+          projects={projects}
+          onDeleteTask={handleDeleteTask}
+          url={URL}
+        />
+      )}
     </div>
   );
 };

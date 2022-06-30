@@ -1,5 +1,4 @@
 import React from "react";
-import { Menubar } from "primereact/menubar";
 
 function NavBar({ handleOpen }) {
   const items = [
@@ -10,7 +9,7 @@ function NavBar({ handleOpen }) {
     },
   ];
 
-  return <Menubar model={items} />;
+  // return <Menubar model={items} />;
 }
 
 export default NavBar;
