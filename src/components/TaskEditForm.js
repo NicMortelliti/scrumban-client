@@ -94,33 +94,31 @@ function TaskEditForm({
   };
 
   return (
-    <>
-      <form>
-        <TaskEditText
-          label={"Description"}
-          name={"description"}
-          value={formData.description}
-          handleChange={handleTextChange}
-        />
-        <TaskEditText
-          label={"Points"}
-          name={"story_points"}
-          value={formData.story_points}
-          handleChange={handleTextChange}
-        />
-        <TaskEditSelect
-          label={"Assign to"}
-          name={"user.id"}
-          value={formData.user.id ? formData.user.id : 0}
-          options={users}
-          displayAttribute="username"
-          handleChange={handleSelectChange}
-        />
-        <button onClick={(e) => setOpenEdit(e)}>Cancel</button>
-        <button onClick={handleDelete}>Delete</button>
-        <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
-      </form>
-    </>
+    <form>
+      <TaskEditText
+        label={"Description"}
+        name={"description"}
+        value={formData.description}
+        handleChange={handleTextChange}
+      />
+      <TaskEditText
+        label={"Points"}
+        name={"story_points"}
+        value={formData.story_points}
+        handleChange={handleTextChange}
+      />
+      <TaskEditSelect
+        label={"Assign to"}
+        name={"user.id"}
+        value={formData.user.id ? formData.user.id : 0}
+        options={users}
+        displayAttribute="username"
+        handleChange={handleSelectChange}
+      />
+      <button onClick={(e) => setOpenEdit(e)}>Cancel</button>
+      <button onClick={handleDelete}>Delete</button>
+      <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
+    </form>
   );
 }
 
