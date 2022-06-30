@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import NavBar from "./NavBar";
 import NewTask from "./NewTask";
+import ProjectSelectModal from "./ProjectSelectModal";
 import TaskBoard from "./TaskBoard";
 import TaskEditPanel from "./TaskEditPanel";
 
@@ -40,12 +42,6 @@ const App = () => {
         .then((data) => state.setter(data));
     });
   }, []);
-
-  // Automatically set current project to
-  // first item in the array when populated
-  useEffect(() => {
-    setCurrentProject(projects[0]);
-  }, [projects]);
 
   // Handle opening/closing of new task form
   const handleNewTaskOpen = (e) => {
@@ -90,12 +86,14 @@ const App = () => {
         setCurrentProject={setCurrentProject}
       />
       <DisplayNewTaskForm />
-      <TaskBoard
-        data={data}
-        users={users}
-        projects={projects}
-        handleEditOpen={handleEditOpen}
-      />
+      {currentProject && (
+        <TaskBoard
+          data={data}
+          users={users}
+          projects={projects}
+          handleEditOpen={handleEditOpen}
+        />
+      )}
       {openEdit && (
         <TaskEditPanel
           task={currentTask}
@@ -107,6 +105,9 @@ const App = () => {
           onDeleteTask={handleDeleteTask}
           url={URL}
         />
+      )}
+      {!currentProject && projects && (
+        <ProjectSelectModal projects={projects} setProjects={setProjects} />
       )}
     </div>
   );
