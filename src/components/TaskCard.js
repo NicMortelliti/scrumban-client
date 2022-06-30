@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
     return (
-      <Card style={{ width: "flex" }}>
+      <Card style={{ width: "flex" }} border="dark">
         <Card.Body>
           <Card.Title>ID: {task.id}</Card.Title>
           <Card.Text>{task.description}</Card.Text>
