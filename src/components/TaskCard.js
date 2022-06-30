@@ -7,16 +7,20 @@ function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
     return (
       <Card style={{ width: "flex" }} border="dark" className="my-3">
+        <Card.Header>ID: {task.id}</Card.Header>
         <Card.Body>
-          <Card.Title>ID: {task.id}</Card.Title>
-          <Card.Text>{task.description}</Card.Text>
+          <Card.Title>{task.description}</Card.Title>
           <Card.Text>Points: {task.story_points}</Card.Text>
           <Card.Text>Due: {task.due_date.slice(0, 10)}</Card.Text>
           {task.user && <Card.Text>Assigned: {task.user.username}</Card.Text>}
-          <Button variant="primary" onClick={(e) => handleEditOpen(e, task)}>
+        </Card.Body>
+        <Card.Footer className="text-center">
+          <Button
+            variant="outline-primary"
+            onClick={(e) => handleEditOpen(e, task)}>
             Edit
           </Button>
-        </Card.Body>
+        </Card.Footer>
       </Card>
     );
   };
