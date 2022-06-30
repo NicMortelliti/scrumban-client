@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
+
+import Form from "react-bootstrap/Form";
 
 function TaskEditForm({
   task,
@@ -94,7 +97,7 @@ function TaskEditForm({
   };
 
   return (
-    <form>
+    <Form>
       <TaskEditText
         label={"Description"}
         name={"description"}
@@ -118,7 +121,7 @@ function TaskEditForm({
       <button onClick={(e) => setOpenEdit(e)}>Cancel</button>
       <button onClick={handleDelete}>Delete</button>
       <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
-    </form>
+    </Form>
   );
 }
 
