@@ -83,24 +83,6 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
     );
   };
 
-  // Display tasks
-  // const DisplayItems = () => {
-  //   return (
-  //     data &&
-  //     data.map((eachTask) => (
-  //       <TaskCard
-  //         key={eachTask.id}
-  //         task={eachTask}
-  //         data={data}
-  //         users={users}
-  //         setData={setData}
-  //         onDeleteTask={handleDeleteTask}
-  //         url={URL}
-  //       />
-  //     ))
-  //   );
-  // };
-
   return (
     <div>
       <RenderColumns />
