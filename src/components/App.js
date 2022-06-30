@@ -5,6 +5,10 @@ import NewTask from "./NewTask";
 import TaskBoard from "./TaskBoard";
 import TaskEdit from "./TaskEdit";
 
+import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
+import "primereact/resources/primereact.min.css"; //core css
+import "primeicons/primeicons.css"; //icons
+
 const URL = "http://localhost:9292";
 
 const App = () => {
@@ -37,7 +41,6 @@ const App = () => {
 
   // Handle opening/closing of new task form
   const handleNewTaskOpen = (e) => {
-    e.preventDefault();
     setNewTaskOpen(!newTaskOpen);
   };
 

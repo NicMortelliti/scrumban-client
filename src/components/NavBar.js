@@ -1,7 +1,16 @@
 import React from "react";
+import { Menubar } from "primereact/menubar";
 
 function NavBar({ handleOpen }) {
-  return <button onClick={(e) => handleOpen(e)}>New Task</button>;
+  const items = [
+    {
+      label: "New Task",
+      icon: "pi pi-plus",
+      command: (e) => handleOpen(e),
+    },
+  ];
+
+  return <Menubar model={items} />;
 }
 
 export default NavBar;

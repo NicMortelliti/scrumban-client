@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 function TaskCard({ task }) {
+
   const [openEdit, setOpenEdit] = useState(false);
 
   // Handle opening/closing of edit task form
@@ -39,6 +40,40 @@ function TaskCard({ task }) {
     //   <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
     //   <button onClick={(e) => handleEditTaskOpen(e)}>Edit</button>
     // </Card>
+
+  // Define card footer components
+  const footer = (
+    <span>
+      <Button
+        label="Edit"
+        icon="pi pi-pencil"
+        className="p-button-text"
+        onClick={(e) => handleEditTaskOpen(e)}
+      />
+    </span>
+  );
+
+  return (
+    <Card
+      key={task.id}
+      title={task.description}
+      subTitle={`Task #: ${task.id}`}
+      footer={footer}>
+      <p>Points: {task.story_points}</p>
+      <p>Due: {task.due_date.slice(0, 10)}</p>
+      <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
+      {openEdit && (
+        <TaskEdit
+          task={task}
+          setOpenEdit={handleEditTaskOpen}
+          data={data}
+          users={users}
+          setData={setData}
+          onDeleteTask={onDeleteTask}
+          url={url}
+        />
+      )}
+    </Card>
   );
 }
 
