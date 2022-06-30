@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import TaskCard from "./TaskCard";
+import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./NavBar";
 import NewTask from "./NewTask";
+import TaskBoard from "./TaskBoard";
+import TaskEdit from "./TaskEdit";
 
 const URL = "http://localhost:9292";
 
@@ -39,24 +41,6 @@ const App = () => {
     setNewTaskOpen(!newTaskOpen);
   };
 
-  // Display tasks
-  const DisplayItems = () => {
-    return (
-      data &&
-      data.map((eachTask) => (
-        <TaskCard
-          key={eachTask.id}
-          task={eachTask}
-          data={data}
-          users={users}
-          setData={setData}
-          onDeleteTask={handleDeleteTask}
-          url={URL}
-        />
-      ))
-    );
-  };
-
   // Display New Task Form
   const DisplayNewTaskForm = () => {
     return (
@@ -79,11 +63,26 @@ const App = () => {
     setData(updatedData);
   };
 
+  // Display Task Edit Panel
+  // const RenderTaskEdit = () => {
+  //   openEdit && (
+  //     <TaskEdit
+  //       task={task}
+  //       setOpenEdit={handleEditTaskOpen}
+  //       data={data}
+  //       users={users}
+  //       setData={setData}
+  //       onDeleteTask={onDeleteTask}
+  //       url={url}
+  //     />
+  //   );
+  // };
+
   return (
     <div>
       <NavBar handleOpen={handleNewTaskOpen} />
       <DisplayNewTaskForm />
-      <DisplayItems />
+      <TaskBoard data={data} users={users} projects={projects} />
     </div>
   );
 };

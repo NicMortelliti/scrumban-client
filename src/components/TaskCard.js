@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import TaskEdit from "./TaskEdit";
 
-function TaskCard({ task, data, users, setData, onDeleteTask, url }) {
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+
+function TaskCard({ task }) {
   const [openEdit, setOpenEdit] = useState(false);
 
   // Handle opening/closing of edit task form
@@ -10,27 +12,33 @@ function TaskCard({ task, data, users, setData, onDeleteTask, url }) {
     setOpenEdit(!openEdit);
   };
 
+  const RenderCard = () => {
+    return (
+      <Card style={{ width: "flex" }}>
+        <Card.Body>
+          <Card.Title>ID: {task.id}</Card.Title>
+          <Card.Text>{task.description}</Card.Text>
+          <Card.Text>Points: {task.story_points}</Card.Text>
+          <Card.Text>Due: {task.due_date}</Card.Text>
+          <Card.Text>Assigned: {task.user.username}</Card.Text>
+          <Button variant="primary">Edit</Button>
+        </Card.Body>
+      </Card>
+    );
+  };
+
+  console.log(task.description);
   return (
-    <div key={task.id}>
-      <h3>
-        Task {task.id}: {task.description}
-      </h3>
-      <p>Points: {task.story_points}</p>
-      <p>Due: {task.due_date.slice(0, 10)}</p>
-      <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
-      <button onClick={(e) => handleEditTaskOpen(e)}>Edit</button>
-      {openEdit && (
-        <TaskEdit
-          task={task}
-          setOpenEdit={handleEditTaskOpen}
-          data={data}
-          users={users}
-          setData={setData}
-          onDeleteTask={onDeleteTask}
-          url={url}
-        />
-      )}
-    </div>
+    <RenderCard />
+    // <Card key={task.id}>
+    //   <h3>
+    //     Task {task.id}: {task.description}
+    //   </h3>
+    //   <p>Points: {task.story_points}</p>
+    //   <p>Due: {task.due_date.slice(0, 10)}</p>
+    //   <p>Assigned: {task.user ? task.user.username : "Unassinged"} </p>
+    //   <button onClick={(e) => handleEditTaskOpen(e)}>Edit</button>
+    // </Card>
   );
 }
 
