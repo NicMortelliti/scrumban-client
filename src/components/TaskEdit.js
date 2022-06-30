@@ -13,7 +13,6 @@ function TaskEdit({
   onDeleteTask,
   url,
 }) {
-  console.log(task);
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
@@ -94,9 +93,8 @@ function TaskEdit({
     setData(newData);
   };
 
-  const show = true;
   return (
-    <Offcanvas show={show} autoFocus={true}>
+    <Offcanvas show autoFocus={true} onHide={setOpenEdit}>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Offcanvas</Offcanvas.Title>
       </Offcanvas.Header>

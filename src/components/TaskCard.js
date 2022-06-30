@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -12,7 +12,7 @@ function TaskCard({ task, handleEditOpen }) {
           <Card.Text>{task.description}</Card.Text>
           <Card.Text>Points: {task.story_points}</Card.Text>
           <Card.Text>Due: {task.due_date}</Card.Text>
-          {/* <Card.Text>Assigned: {task.user.username}</Card.Text> */}
+          {task.user && <Card.Text>Assigned: {task.user.username}</Card.Text>}
           <Button variant="primary" onClick={(e) => handleEditOpen(e, task)}>
             Edit
           </Button>

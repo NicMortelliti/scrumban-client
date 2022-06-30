@@ -65,9 +65,9 @@ const App = () => {
   };
 
   const handleEditOpen = (e, task) => {
-    e.preventDefault();
-    setCurrentTask(task);
-    setOpenEdit(true);
+    e && e.preventDefault();
+    task && setCurrentTask(task);
+    setOpenEdit(!openEdit);
   };
 
   return (
@@ -83,7 +83,7 @@ const App = () => {
       {openEdit && (
         <TaskEdit
           task={currentTask}
-          setOpenEdit={setOpenEdit}
+          setOpenEdit={handleEditOpen}
           data={data}
           setData={setData}
           users={users}
