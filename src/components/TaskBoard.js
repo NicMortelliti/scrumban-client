@@ -42,42 +42,17 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
     return (
       <Container fluid>
         <Row>
-          <Stack gap={2} className="col-md-1 mx-auto">
-            {backlog.map((eachTask) => (
-              <TaskCard
-                key={eachTask.id}
-                task={eachTask}
-                handleEditOpen={handleEditOpen}
-              />
-            ))}
-          </Stack>
-          <Stack gap={2} className="col-md-1 mx-auto">
-            {inProgress.map((eachTask) => (
-              <TaskCard
-                key={eachTask.id}
-                task={eachTask}
-                handleEditOpen={handleEditOpen}
-              />
-            ))}
-          </Stack>
-          <Stack gap={2} className="col-md-1 mx-auto">
-            {peerReview.map((eachTask) => (
-              <TaskCard
-                key={eachTask.id}
-                task={eachTask}
-                handleEditOpen={handleEditOpen}
-              />
-            ))}
-          </Stack>
-          <Stack gap={2} className="col-md-1 mx-auto">
-            {closed.map((eachTask) => (
-              <TaskCard
-                key={eachTask.id}
-                task={eachTask}
-                handleEditOpen={handleEditOpen}
-              />
-            ))}
-          </Stack>
+          {[backlog, inProgress, peerReview, closed].map((phase, index) => (
+            <Stack key={index} gap={2} className="col-md-1 mx-auto">
+              {phase.map((eachTask) => (
+                <TaskCard
+                  key={eachTask.id}
+                  task={eachTask}
+                  handleEditOpen={handleEditOpen}
+                />
+              ))}
+            </Stack>
+          ))}
         </Row>
       </Container>
     );
