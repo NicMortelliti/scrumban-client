@@ -73,7 +73,8 @@ function TaskEdit({
       }),
     })
       .then((r) => r.json())
-      .then((updatedTask) => onUpdateTask(updatedTask));
+      .then((updatedTask) => onUpdateTask(updatedTask))
+      .then((e = setOpenEdit(e)));
   };
 
   // Handle updating submitted task
