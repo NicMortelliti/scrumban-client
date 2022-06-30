@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 function TaskEditForm({
@@ -97,7 +98,7 @@ function TaskEditForm({
   };
 
   return (
-    <Form>
+    <Form className="text-center">
       <TaskEditText
         label={"Description"}
         name={"description"}
@@ -118,9 +119,15 @@ function TaskEditForm({
         displayAttribute="username"
         handleChange={handleSelectChange}
       />
-      <button onClick={(e) => setOpenEdit(e)}>Cancel</button>
-      <button onClick={handleDelete}>Delete</button>
-      <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
+      <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
+        Submit
+      </Button>
+      <Button variant="light" onClick={(e) => setOpenEdit(e)}>
+        Cancel
+      </Button>{" "}
+      <Button variant="outline-danger" onClick={handleDelete}>
+        Delete
+      </Button>
     </Form>
   );
 }
