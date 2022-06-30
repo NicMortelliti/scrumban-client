@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./NavBar";
 import NewTask from "./NewTask";
 import TaskBoard from "./TaskBoard";
-import TaskEdit from "./TaskEdit";
+import TaskEditPanel from "./TaskEditPanel";
 
 const URL = "http://localhost:9292";
 
@@ -61,6 +61,7 @@ const App = () => {
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
+    setOpenEdit(!openEdit);
     setData(updatedData);
   };
 
@@ -81,7 +82,7 @@ const App = () => {
         handleEditOpen={handleEditOpen}
       />
       {openEdit && (
-        <TaskEdit
+        <TaskEditPanel
           task={currentTask}
           setOpenEdit={handleEditOpen}
           data={data}

@@ -11,7 +11,7 @@ function TaskCard({ task, handleEditOpen }) {
           <Card.Title>ID: {task.id}</Card.Title>
           <Card.Text>{task.description}</Card.Text>
           <Card.Text>Points: {task.story_points}</Card.Text>
-          <Card.Text>Due: {task.due_date}</Card.Text>
+          <Card.Text>Due: {task.due_date.slice(0, 10)}</Card.Text>
           {task.user && <Card.Text>Assigned: {task.user.username}</Card.Text>}
           <Button variant="primary" onClick={(e) => handleEditOpen(e, task)}>
             Edit
