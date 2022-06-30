@@ -1,15 +1,44 @@
 import React from "react";
 
-function NavBar({ handleOpen }) {
-  const items = [
-    {
-      label: "New Task",
-      icon: "pi pi-plus",
-      command: (e) => handleOpen(e),
-    },
-  ];
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
-  // return <Menubar model={items} />;
+function NavBar({ handleOpen, projects, currentProject, setCurrentProject }) {
+  const RenderDropDown = () => (
+    <NavDropdown title={currentProject.name} id="projectSelect">
+      {projects.map((project) => (
+        <NavDropdown.Item
+          key={project.id}
+          onChange={() => setCurrentProject(project)}>
+          {project.name}
+        </NavDropdown.Item>
+      ))}
+    </NavDropdown>
+  );
+
+  const RenderAddButton = () => (
+    <Button variant="outline-primary" onClick={(e) => handleOpen(e)}>
+      Add Task
+    </Button>
+  );
+
+  const RenderNavBar = () => (
+    <Navbar sticky="top" bg="light" variant="light">
+      <Container>
+        <Navbar.Brand>Scrum Board</Navbar.Brand>
+        {currentProject && (
+          <>
+            <RenderAddButton />
+            <RenderDropDown />
+          </>
+        )}
+      </Container>
+    </Navbar>
+  );
+
+  return <RenderNavBar />;
 }
 
 export default NavBar;

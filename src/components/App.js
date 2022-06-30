@@ -8,10 +8,14 @@ import TaskEditPanel from "./TaskEditPanel";
 const URL = "http://localhost:9292";
 
 const App = () => {
-  const [currentTask, setCurrentTask] = useState();
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState({
+    id: 0,
+    name: "Loading Projects...",
+  });
+  const [currentTask, setCurrentTask] = useState();
+  const [currentProject, setCurrentProject] = useState();
   const [newTaskOpen, setNewTaskOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
 
@@ -36,6 +40,12 @@ const App = () => {
         .then((data) => state.setter(data));
     });
   }, []);
+
+  // Automatically set current project to
+  // first item in the array when populated
+  useEffect(() => {
+    setCurrentProject(projects[0]);
+  }, [projects]);
 
   // Handle opening/closing of new task form
   const handleNewTaskOpen = (e) => {
@@ -73,7 +83,12 @@ const App = () => {
 
   return (
     <div>
-      <NavBar handleOpen={handleNewTaskOpen} />
+      <NavBar
+        handleOpen={handleNewTaskOpen}
+        projects={projects}
+        currentProject={currentProject}
+        setCurrentProject={setCurrentProject}
+      />
       <DisplayNewTaskForm />
       <TaskBoard
         data={data}
