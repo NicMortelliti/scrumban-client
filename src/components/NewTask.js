@@ -3,6 +3,8 @@ import TaskEditText from "./TaskEditText";
 import TaskEditSelect from "./TaskEditSelect";
 import DateSelect from "./DateSelect";
 
+import Button from "react-bootstrap/Button";
+
 function NewTask({ users, projects, data, setData, handleClose, url }) {
   const [formData, setFormData] = useState({
     description: "",
@@ -125,8 +127,15 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
           value={formData.due_date.slice(0, 10)}
           handleChange={handleDateChange}
         />
-        <button onClick={(e) => handleClose(e)}>Cancel</button>
-        <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
+        <Button variant="light" onClick={(e) => handleClose(e)}>
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={(e) => handleSubmit(e)}>
+          Submit
+        </Button>
       </form>
     </div>
   );
