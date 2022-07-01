@@ -52,20 +52,27 @@ const App = () => {
     );
 
   // Display New Task Form
-  const DisplayNewTaskForm = () => {
-    return (
-      newTaskOpen && (
-        <NewTask
-          users={users}
-          projects={projects}
-          data={data}
-          setData={setData}
-          handleClose={handleNewTaskOpen}
-          url={URL}
-        />
-      )
+  const RenderNewTaskForm = () =>
+    newTaskOpen && (
+      <NewTask
+        users={users}
+        projects={projects}
+        data={data}
+        setData={setData}
+        handleClose={handleNewTaskOpen}
+        url={URL}
+      />
     );
-  };
+
+  // Display Nav Bar
+  const RenderNavBar = () => (
+    <NavBar
+      handleOpen={handleNewTaskOpen}
+      projects={projects}
+      currentProject={currentProject}
+      setCurrentProject={setCurrentProject}
+    />
+  );
 
   // Display Loading indicator
   const RenderLoading = () => <p>Loading...</p>;
@@ -84,6 +91,32 @@ const App = () => {
     }
   };
 
+  // Display Task Board
+  const RenderTaskBoard = () =>
+    currentProject && (
+      <TaskBoard
+        data={data}
+        users={users}
+        projects={projects}
+        handleEditOpen={handleEditOpen}
+      />
+    );
+
+  // Display Task Edit Panel
+  const RenderTaskEdit = () =>
+    openEdit && (
+      <TaskEditPanel
+        task={currentTask}
+        setOpenEdit={handleEditOpen}
+        data={data}
+        setData={setData}
+        users={users}
+        projects={projects}
+        onDeleteTask={handleDeleteTask}
+        url={URL}
+      />
+    );
+
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
@@ -99,33 +132,10 @@ const App = () => {
 
   return (
     <div>
-      <NavBar
-        handleOpen={handleNewTaskOpen}
-        projects={projects}
-        currentProject={currentProject}
-        setCurrentProject={setCurrentProject}
-      />
-      <DisplayNewTaskForm />
-      {currentProject && (
-        <TaskBoard
-          data={data}
-          users={users}
-          projects={projects}
-          handleEditOpen={handleEditOpen}
-        />
-      )}
-      {openEdit && (
-        <TaskEditPanel
-          task={currentTask}
-          setOpenEdit={handleEditOpen}
-          data={data}
-          setData={setData}
-          users={users}
-          projects={projects}
-          onDeleteTask={handleDeleteTask}
-          url={URL}
-        />
-      )}
+      <RenderNavBar />
+      <RenderNewTaskForm />
+      <RenderTaskBoard />
+      <RenderTaskEdit />
       <RenderProjectSelect />
     </div>
   );
