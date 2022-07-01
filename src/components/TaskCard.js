@@ -3,7 +3,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function TaskCard({ task, currentProject, handleEditOpen }) {
+function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
     return (
       <Card style={{ width: "flex" }} border="dark" className="my-3">

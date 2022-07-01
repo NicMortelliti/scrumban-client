@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
+function TaskBoard({ data, currentProject, handleEditOpen }) {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [peerReview, setPeerReview] = useState([]);
@@ -59,7 +59,6 @@ function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
                 <TaskCard
                   key={eachTask.id}
                   task={eachTask}
-                  currentProject={currentProject}
                   handleEditOpen={handleEditOpen}
                 />
               ))}
