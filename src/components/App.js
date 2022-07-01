@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import Spinner from "react-bootstrap/Spinner";
+
 import NavBar from "./NavBar";
 import NewTask from "./NewTask";
 import ProjectSelectModal from "./ProjectSelectModal";
@@ -75,7 +77,13 @@ const App = () => {
   );
 
   // Display Loading indicator
-  const RenderLoading = () => <p>Loading...</p>;
+  const RenderLoading = () => (
+    <div className="align-middle">
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </div>
+  );
 
   // Display Project Select Modal
   const RenderProjectSelect = () => {
