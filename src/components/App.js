@@ -76,27 +76,24 @@ const App = () => {
   );
 
   // Display Loading indicator
-  const RenderLoading = () => (
-    <div className="align-middle">
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    </div>
-  );
+  const RenderLoading = () =>
+    !projects && (
+      <div className="align-middle">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
 
   // Display Project Select Modal
-  const RenderProjectSelect = () => {
-    if (projects && !currentProject) {
-      return (
-        <ProjectSelectModal
-          projects={projects}
-          handleChange={handleProjectChange}
-        />
-      );
-    } else {
-      return <RenderLoading />;
-    }
-  };
+  const RenderProjectSelect = () =>
+    projects &&
+    !currentProject && (
+      <ProjectSelectModal
+        projects={projects}
+        handleChange={handleProjectChange}
+      />
+    );
 
   // Display Task Board
   const RenderTaskBoard = () =>
@@ -146,6 +143,7 @@ const App = () => {
       <RenderTaskBoard />
       <RenderTaskEdit />
       <RenderProjectSelect />
+      <RenderLoading />
     </div>
   );
 };
