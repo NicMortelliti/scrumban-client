@@ -45,6 +45,12 @@ const App = () => {
     setNewTaskOpen(!newTaskOpen);
   };
 
+  // Handle the selection of a project
+  const handleProjectChange = (e) =>
+    projects.map(
+      (project) => project.id === parseInt(e) && setCurrentProject(project)
+    );
+
   // Display New Task Form
   const DisplayNewTaskForm = () => {
     return (
@@ -68,7 +74,10 @@ const App = () => {
   const RenderProjectSelect = () => {
     if (projects && !currentProject) {
       return (
-        <ProjectSelectModal projects={projects} setProjects={setProjects} />
+        <ProjectSelectModal
+          projects={projects}
+          handleChange={handleProjectChange}
+        />
       );
     } else {
       return <RenderLoading />;
