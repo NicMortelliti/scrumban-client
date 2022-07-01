@@ -8,7 +8,7 @@ function TaskCard({ task, currentProject, handleEditOpen }) {
     return (
       <Card style={{ width: "flex" }} border="dark" className="my-3">
         <Card.Header>
-          {currentProject.name}-{task.id}
+          {task.project.name}-{task.id}
         </Card.Header>
         <Card.Body>
           <Card.Title>{task.description}</Card.Title>
