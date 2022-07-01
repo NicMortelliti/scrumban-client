@@ -5,7 +5,6 @@ import TaskCard from "./TaskCard";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Stack from "react-bootstrap/Stack";
 
 function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
   const [backlog, setBacklog] = useState([]);
@@ -22,7 +21,7 @@ function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
 
     data &&
       data.map((task) => {
-        if (task.project_id === currentProject.id) {
+        if (task.project.id === currentProject.id) {
           if (task.state === 1) {
             newBacklog = [...newBacklog, task];
           } else if (task.state === 2) {
@@ -42,10 +41,20 @@ function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
 
   const RenderColumns = () => {
     return (
-      <Container fluid>
-        <Row xs={1} md={4} className="g-4">
+      <Container fluid="md">
+        {/* Display swim lane headers */}
+        <Row xs={4} md={4} lg={4} className="g-4">
+          {["Backlog", "In Progress", "Peer Review", "Closed"].map((phase) => (
+            <Col key={phase} xs={3} className="text-center">
+              <h5>{phase}</h5>
+            </Col>
+          ))}
+        </Row>
+
+        {/* Display task cards */}
+        <Row xs={4} md={4} lg={4} className="g-4">
           {[backlog, inProgress, peerReview, closed].map((phase, index) => (
-            <Col key={index}>
+            <Col key={index} xs={3}>
               {phase.map((eachTask) => (
                 <TaskCard
                   key={eachTask.id}
