@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import Spinner from "react-bootstrap/Spinner";
 
@@ -133,6 +132,7 @@ const App = () => {
     setData(updatedData);
   };
 
+  // Display Task Edit Panel
   const handleEditOpen = (e, task) => {
     e && e.preventDefault();
     task && setCurrentTask(task);
