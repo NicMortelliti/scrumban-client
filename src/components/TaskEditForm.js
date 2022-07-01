@@ -20,10 +20,10 @@ function TaskEditForm({
     id: task.id,
     description: task.description,
     user: {
-      id: task.user_id,
-      first_name: task.user.first_name,
-      last_name: task.user.last_name,
-      username: task.user.username,
+      id: task.user ? task.user_id : "",
+      first_name: task.user ? task.user.first_name : "",
+      last_name: task.user ? task.user.last_name : "",
+      username: task.user ? task.user.username : "",
     },
     story_points: task.story_points,
     project_id: task.project_id,
@@ -40,10 +40,10 @@ function TaskEditForm({
 
   // Update formData upon select field change
   const handleSelectChange = (e) => {
-    const selectedId = parseInt(e.target.value);
-
     // Match selected user ID with that found in the users state
-    const userMatch = users.filter((user) => user.id === selectedId);
+    const userMatch = users.filter(
+      (user) => user.id === parseInt(e.target.value)
+    );
 
     // Update user state with found user info
     setFormData({ ...formData, user: { ...userMatch[0] } });
@@ -81,7 +81,7 @@ function TaskEditForm({
   };
 
   // Handle updating submitted task
-  const onUpdateTask = (updatedTask) => {
+  const onUpdateTask = () => {
     // Find and update applicable task with form data
     const newData = data.map((eachTask) => {
       if (eachTask.id === formData.id) {
@@ -114,7 +114,7 @@ function TaskEditForm({
       <TaskEditSelect
         label={"Assign to"}
         name={"user.id"}
-        value={formData.user.id ? formData.user.id : 0}
+        value={formData.user && formData.user.id}
         options={users}
         displayAttribute="username"
         handleChange={handleSelectChange}
@@ -124,7 +124,7 @@ function TaskEditForm({
       </Button>
       <Button variant="light" onClick={(e) => setOpenEdit(e)}>
         Cancel
-      </Button>{" "}
+      </Button>
       <Button variant="outline-danger" onClick={handleDelete}>
         Delete
       </Button>
