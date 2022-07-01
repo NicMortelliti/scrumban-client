@@ -7,7 +7,7 @@ function ProjectSelectModal({ projects, handleChange }) {
   return (
     <Modal show size="lg" centered className="text-center">
       <Modal.Header closeButton>
-        <Modal.Title>Welcome!</Modal.Title>
+        <Modal.Title>Welcome to Scrum!</Modal.Title>
       </Modal.Header>
       <br></br>
       <Dropdown onSelect={(e) => handleChange(e)}>
