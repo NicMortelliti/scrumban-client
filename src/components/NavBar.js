@@ -5,13 +5,14 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function NavBar({ handleOpen, projects, currentProject, setCurrentProject }) {
+function NavBar({ handleOpen, projects, currentProject, handleChange }) {
   const RenderDropDown = () => (
-    <NavDropdown title={currentProject.name} id="projectSelect">
+    <NavDropdown
+      title={currentProject.name}
+      id="projectSelect"
+      onSelect={(e) => handleChange(e)}>
       {projects.map((project) => (
-        <NavDropdown.Item
-          key={project.id}
-          onChange={() => setCurrentProject(project)}>
+        <NavDropdown.Item key={project.id} eventKey={project.id}>
           {project.name}
         </NavDropdown.Item>
       ))}

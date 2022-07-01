@@ -70,7 +70,7 @@ const App = () => {
       handleOpen={handleNewTaskOpen}
       projects={projects}
       currentProject={currentProject}
-      setCurrentProject={setCurrentProject}
+      handleChange={handleProjectChange}
     />
   );
 
