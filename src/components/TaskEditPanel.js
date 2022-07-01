@@ -17,7 +17,9 @@ function TaskEditPanel({
   return (
     <Offcanvas show autoFocus={true} placement="end" onHide={setOpenEdit}>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Editing task {task.id}</Offcanvas.Title>
+        <Offcanvas.Title>
+          Editing {task.project.name}-{task.id}
+        </Offcanvas.Title>
       </Offcanvas.Header>
       <TaskEditForm
         task={task}
