@@ -12,12 +12,9 @@ const URL = "http://localhost:9292";
 const App = () => {
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
-  const [projects, setProjects] = useState({
-    id: 0,
-    name: "Loading Projects...",
-  });
-  const [currentTask, setCurrentTask] = useState();
-  const [currentProject, setCurrentProject] = useState();
+  const [projects, setProjects] = useState(null);
+  const [currentTask, setCurrentTask] = useState(null);
+  const [currentProject, setCurrentProject] = useState(null);
   const [newTaskOpen, setNewTaskOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
 
@@ -64,6 +61,20 @@ const App = () => {
     );
   };
 
+  // Display Loading indicator
+  const RenderLoading = () => <p>Loading...</p>;
+
+  // Display Project Select Modal
+  const RenderProjectSelect = () => {
+    if (projects && !currentProject) {
+      return (
+        <ProjectSelectModal projects={projects} setProjects={setProjects} />
+      );
+    } else {
+      return <RenderLoading />;
+    }
+  };
+
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
@@ -106,9 +117,7 @@ const App = () => {
           url={URL}
         />
       )}
-      {!currentProject && projects && (
-        <ProjectSelectModal projects={projects} setProjects={setProjects} />
-      )}
+      <RenderProjectSelect />
     </div>
   );
 };
