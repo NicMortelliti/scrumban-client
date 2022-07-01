@@ -98,6 +98,7 @@ const App = () => {
         data={data}
         users={users}
         projects={projects}
+        currentProject={currentProject}
         handleEditOpen={handleEditOpen}
       />
     );

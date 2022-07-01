@@ -3,11 +3,13 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function TaskCard({ task, handleEditOpen }) {
+function TaskCard({ task, currentProject, handleEditOpen }) {
   const RenderCard = () => {
     return (
       <Card style={{ width: "flex" }} border="dark" className="my-3">
-        <Card.Header>ID: {task.id}</Card.Header>
+        <Card.Header>
+          {currentProject.name}-{task.id}
+        </Card.Header>
         <Card.Body>
           <Card.Title>{task.description}</Card.Title>
           <Card.Text>Points: {task.story_points}</Card.Text>

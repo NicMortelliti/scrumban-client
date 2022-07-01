@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Stack from "react-bootstrap/Stack";
 
-function TaskBoard({ data, users, projects, handleEditOpen }) {
+function TaskBoard({ data, users, projects, currentProject, handleEditOpen }) {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [peerReview, setPeerReview] = useState([]);
@@ -22,16 +22,17 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
 
     data &&
       data.map((task) => {
-        if (task.state === 1) {
-          newBacklog = [...newBacklog, task];
-        } else if (task.state === 2) {
-          newInProgress = [...newInProgress, task];
-        } else if (task.state === 3) {
-          newPeerReview = [...newPeerReview, task];
-        } else if (task.state === 4) {
-          newClosed = [...newClosed, task];
+        if (task.project_id === currentProject.id) {
+          if (task.state === 1) {
+            newBacklog = [...newBacklog, task];
+          } else if (task.state === 2) {
+            newInProgress = [...newInProgress, task];
+          } else if (task.state === 3) {
+            newPeerReview = [...newPeerReview, task];
+          } else if (task.state === 4) {
+            newClosed = [...newClosed, task];
+          }
         }
-        return null;
       });
     setBacklog(newBacklog);
     setInProgress(newInProgress);
@@ -49,6 +50,7 @@ function TaskBoard({ data, users, projects, handleEditOpen }) {
                 <TaskCard
                   key={eachTask.id}
                   task={eachTask}
+                  currentProject={currentProject}
                   handleEditOpen={handleEditOpen}
                 />
               ))}
