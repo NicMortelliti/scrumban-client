@@ -57,7 +57,7 @@ const App = () => {
     newTaskOpen && (
       <NewTask
         users={users}
-        projects={projects}
+        project={currentProject}
         data={data}
         setData={setData}
         handleClose={handleNewTaskOpen}

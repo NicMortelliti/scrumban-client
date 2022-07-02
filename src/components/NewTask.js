@@ -5,15 +5,12 @@ import DateSelect from "./DateSelect";
 
 import Button from "react-bootstrap/Button";
 
-function NewTask({ users, projects, data, setData, handleClose, url }) {
+function NewTask({ users, project, data, setData, handleClose, url }) {
   const [formData, setFormData] = useState({
     description: "",
     story_points: "",
     due_date: "",
-    project: {
-      id: "",
-      name: "",
-    },
+    project_id: project.id,
     user: {
       id: "",
       username: "",
@@ -39,19 +36,6 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
     setFormData({ ...formData, user: { ...userMatch[0] } });
   };
 
-  // Update project formData upon select field change
-  const handleProjectSelectChange = (e) => {
-    const selectedId = parseInt(e.target.value);
-
-    // Match selected user ID with that found in the users state
-    const projectMatch = projects.filter(
-      (project) => project.id === selectedId
-    );
-
-    // Update user state with found user info
-    setFormData({ ...formData, project: { ...projectMatch[0] } });
-  };
-
   // Update due date in formData
   const handleDateChange = (e) => {
     setFormData({
@@ -73,7 +57,7 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
         due_date: formData.due_date,
         story_points: formData.story_points,
         state: 1,
-        project_id: formData.project.id,
+        project_id: formData.project_id,
         user_id: formData.user.id,
       }),
     })
@@ -91,7 +75,7 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
 
   return (
     <div>
-      <h2>Create New Task</h2>
+      <h2>Create New Task for {project.name}</h2>
       <form>
         <TaskEditText
           label="Description"
@@ -112,14 +96,6 @@ function NewTask({ users, projects, data, setData, handleClose, url }) {
           options={users}
           displayAttribute="username"
           handleChange={handleUserSelectChange}
-        />
-        <TaskEditSelect
-          label="Project"
-          name="project_id"
-          value={formData.project.id}
-          options={projects}
-          displayAttribute="name"
-          handleChange={handleProjectSelectChange}
         />
         <DateSelect
           label="Due Date"
