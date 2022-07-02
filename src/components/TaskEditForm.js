@@ -80,17 +80,13 @@ function TaskEditForm({
 
   // Handle updating submitted task
   const onUpdateTask = (updatedTask) => {
-    console.log("Updated task: ", updatedTask);
-    // Find and update applicable task with form data
     const newData = data.map((task) => {
       if (task.id === updatedTask.id) {
-        console.log("Task: ", task);
         return updatedTask;
       } else {
         return task;
       }
     });
-    // Set local data set with the updated data set
     setData(newData);
   };
 
