@@ -116,7 +116,6 @@ const App = () => {
         data={data}
         setData={setData}
         users={users}
-        projects={projects}
         onDeleteTask={handleDeleteTask}
         url={URL}
       />

@@ -20,8 +20,8 @@ function TaskEditSelect({
         onChange={(e) => handleChange(e)}>
         {options.map((each) => {
           return (
-            <option key={each.id} name={each.id} value={each.id}>
-              {each[displayAttribute]}
+            <option key={each.id} name={each.name} value={each.id}>
+              {displayAttribute ? each[displayAttribute] : each}
             </option>
           );
         })}

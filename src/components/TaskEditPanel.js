@@ -10,7 +10,6 @@ function TaskEditPanel({
   data,
   setData,
   users,
-  projects,
   onDeleteTask,
   url,
 }) {
@@ -27,7 +26,6 @@ function TaskEditPanel({
         data={data}
         setData={setData}
         users={users}
-        projects={projects}
         onDeleteTask={onDeleteTask}
         url={url}
       />

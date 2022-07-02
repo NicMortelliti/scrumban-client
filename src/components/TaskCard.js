@@ -3,7 +3,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import { CalendarDateFill, PersonFill } from "react-bootstrap-icons";
+import { Bullseye, CalendarDateFill, PersonFill } from "react-bootstrap-icons";
 
 function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
@@ -14,7 +14,9 @@ function TaskCard({ task, handleEditOpen }) {
         </Card.Header>
         <Card.Body>
           <Card.Title>{task.description}</Card.Title>
-          <Card.Text>Points: {task.story_points}</Card.Text>
+          <Card.Text>
+            <Bullseye /> {task.story_points}
+          </Card.Text>
           <Card.Text>
             <CalendarDateFill /> {task.due_date.slice(0, 10)}
           </Card.Text>

@@ -12,7 +12,6 @@ function TaskEditForm({
   data,
   setData,
   users,
-  projects,
   onDeleteTask,
   url,
 }) {
@@ -27,6 +26,7 @@ function TaskEditForm({
     },
     story_points: task.story_points,
     project_id: task.project_id,
+    state: task.state,
     due_date: task.due_date,
   });
 
@@ -38,8 +38,8 @@ function TaskEditForm({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Update formData upon select field change
-  const handleSelectChange = (e) => {
+  // User Select Field Change
+  const handleUserSelectChange = (e) => {
     // Match selected user ID with that found in the users state
     const userMatch = users.filter(
       (user) => user.id === parseInt(e.target.value)
@@ -47,6 +47,11 @@ function TaskEditForm({
 
     // Update user state with found user info
     setFormData({ ...formData, user: { ...userMatch[0] } });
+  };
+
+  // State Select Field Change
+  const handleStateSelectChange = (e) => {
+    setFormData({ ...formData, state: parseInt(e.target.value) });
   };
 
   // Handle server delete
@@ -72,6 +77,7 @@ function TaskEditForm({
         due_date: formData.due_date,
         story_points: formData.story_points,
         project_id: formData.project_id,
+        state: formData.state,
         user_id: formData.user.id,
       }),
     })
@@ -82,9 +88,13 @@ function TaskEditForm({
 
   // Handle updating submitted task
   const onUpdateTask = () => {
+    console.log(formData);
+
     // Find and update applicable task with form data
     const newData = data.map((eachTask) => {
       if (eachTask.id === formData.id) {
+        console.log("Server:", eachTask);
+        console.log("Form:", formData);
         return {
           ...eachTask,
           ...formData,
@@ -100,25 +110,39 @@ function TaskEditForm({
   return (
     <Form className="text-center">
       <TaskEditText
-        label={"Description"}
-        name={"description"}
+        label="Description"
+        name="description"
         value={formData.description}
         handleChange={handleTextChange}
       />
       <TaskEditText
-        label={"Points"}
-        name={"story_points"}
+        label="Points"
+        name="story_points"
         value={formData.story_points}
         handleChange={handleTextChange}
       />
       <TaskEditSelect
-        label={"Assign to"}
-        name={"user.id"}
+        label="Assign to"
+        name="user.id"
         value={formData.user && formData.user.id}
         options={users}
         displayAttribute="username"
-        handleChange={handleSelectChange}
+        handleChange={handleUserSelectChange}
       />
+      <TaskEditSelect
+        label="Phase"
+        name="state"
+        value={formData.state}
+        options={[
+          { id: 1, name: "Backlog" },
+          { id: 2, name: "In Progress" },
+          { id: 3, name: "Peer Review" },
+          { id: 4, name: "Closed" },
+        ]}
+        displayAttribute="name"
+        handleChange={handleStateSelectChange}
+      />
+
       <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
         Submit
       </Button>
