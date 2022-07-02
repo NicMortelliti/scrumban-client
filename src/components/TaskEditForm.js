@@ -18,19 +18,21 @@ function TaskEditForm({
   const [formData, setFormData] = useState({
     id: task.id,
     description: task.description,
-    user: {
-      id: task.user ? task.user_id : "",
-      first_name: task.user ? task.user.first_name : "",
-      last_name: task.user ? task.user.last_name : "",
-      username: task.user ? task.user.username : "",
-    },
     story_points: task.story_points,
+    user_id: task.user_id ? task.user_id : null, // Task isn't always assigned to a user
     project_id: task.project_id,
     state: task.state,
     due_date: task.due_date,
   });
 
-  // Update formData upon text field change
+  const phases = [
+    { id: 1, name: "Backlog" },
+    { id: 2, name: "In Progress" },
+    { id: 3, name: "Peer Review" },
+    { id: 4, name: "Closed" },
+  ];
+
+  // Text entry field change
   const handleTextChange = (e) => {
     // Must spread the formData with setter otherwise
     // we end up setting all other attributes
@@ -38,20 +40,10 @@ function TaskEditForm({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // User Select Field Change
-  const handleUserSelectChange = (e) => {
-    // Match selected user ID with that found in the users state
-    const userMatch = users.filter(
-      (user) => user.id === parseInt(e.target.value)
-    );
-
+  // Select field Change
+  const handleSelectChange = (e, name) => {
     // Update user state with found user info
-    setFormData({ ...formData, user: { ...userMatch[0] } });
-  };
-
-  // State Select Field Change
-  const handleStateSelectChange = (e) => {
-    setFormData({ ...formData, state: parseInt(e.target.value) });
+    setFormData({ ...formData, [name]: parseInt(e.target.value) });
   };
 
   // Handle server delete
@@ -78,7 +70,7 @@ function TaskEditForm({
         story_points: formData.story_points,
         project_id: formData.project_id,
         state: formData.state,
-        user_id: formData.user.id,
+        user_id: formData.user_id,
       }),
     })
       .then((r) => r.json())
@@ -87,20 +79,15 @@ function TaskEditForm({
   };
 
   // Handle updating submitted task
-  const onUpdateTask = () => {
-    console.log(formData);
-
+  const onUpdateTask = (updatedTask) => {
+    console.log("Updated task: ", updatedTask);
     // Find and update applicable task with form data
-    const newData = data.map((eachTask) => {
-      if (eachTask.id === formData.id) {
-        console.log("Server:", eachTask);
-        console.log("Form:", formData);
-        return {
-          ...eachTask,
-          ...formData,
-        };
+    const newData = data.map((task) => {
+      if (task.id === updatedTask.id) {
+        console.log("Task: ", task);
+        return updatedTask;
       } else {
-        return eachTask;
+        return task;
       }
     });
     // Set local data set with the updated data set
@@ -123,24 +110,19 @@ function TaskEditForm({
       />
       <TaskEditSelect
         label="Assign to"
-        name="user.id"
-        value={formData.user && formData.user.id}
+        name="user_id"
+        value={formData.user_id && formData.user_id}
         options={users}
         displayAttribute="username"
-        handleChange={handleUserSelectChange}
+        handleChange={handleSelectChange}
       />
       <TaskEditSelect
         label="Phase"
         name="state"
         value={formData.state}
-        options={[
-          { id: 1, name: "Backlog" },
-          { id: 2, name: "In Progress" },
-          { id: 3, name: "Peer Review" },
-          { id: 4, name: "Closed" },
-        ]}
+        options={phases}
         displayAttribute="name"
-        handleChange={handleStateSelectChange}
+        handleChange={handleSelectChange}
       />
 
       <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>

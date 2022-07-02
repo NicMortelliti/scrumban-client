@@ -14,13 +14,12 @@ function TaskEditSelect({
   return (
     <FloatingLabel label={`${label}:`}>
       <Form.Select
-        name={name}
         value={value}
         className="my-3"
-        onChange={(e) => handleChange(e)}>
+        onChange={(e) => handleChange(e, name)}>
         {options.map((each) => {
           return (
-            <option key={each.id} name={each.name} value={each.id}>
+            <option key={each.id} name={name} value={each.id}>
               {displayAttribute ? each[displayAttribute] : each}
             </option>
           );
