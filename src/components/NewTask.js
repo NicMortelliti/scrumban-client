@@ -4,6 +4,7 @@ import TaskEditSelect from "./TaskEditSelect";
 import DateSelect from "./DateSelect";
 
 import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 function NewTask({ users, project, data, setData, handleClose, url }) {
   const [formData, setFormData] = useState({
@@ -74,7 +75,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
   };
 
   return (
-    <div>
+    <Offcanvas show autoFocus placement="end" onHide={handleClose}>
       <h2>Create New Task for {project.name}</h2>
       <form>
         <TaskEditText
@@ -113,7 +114,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
           Submit
         </Button>
       </form>
-    </div>
+    </Offcanvas>
   );
 }
 
