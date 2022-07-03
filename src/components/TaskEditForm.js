@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import DateSelect from "./DateSelect";
 import TaskEditSelect from "./TaskEditSelect";
 import TaskEditText from "./TaskEditText";
 
@@ -44,6 +45,14 @@ function TaskEditForm({
   const handleSelectChange = (e, name) => {
     // Update user state with found user info
     setFormData({ ...formData, [name]: parseInt(e.target.value) });
+  };
+
+  // Update due date in formData
+  const handleDateChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: `${e.target.value}T00:00:00.000Z`,
+    });
   };
 
   // Handle server delete
@@ -120,7 +129,12 @@ function TaskEditForm({
         displayAttribute="name"
         handleChange={handleSelectChange}
       />
-
+      <DateSelect
+        label="Due Date"
+        name="due_date"
+        value={formData.due_date.slice(0, 10)}
+        handleChange={handleDateChange}
+      />
       <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
         Submit
       </Button>
