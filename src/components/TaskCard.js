@@ -2,6 +2,8 @@ import React from "react";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 import { Bullseye, CalendarDateFill, PersonFill } from "react-bootstrap-icons";
 
@@ -13,17 +15,25 @@ function TaskCard({ task, handleEditOpen }) {
           {task.project.name}-{task.id}
         </Card.Header>
         <Card.Body>
-          <Card.Title>{task.description}</Card.Title>
-          <Card.Text>
-            <Bullseye /> {task.story_points}
-          </Card.Text>
-          <Card.Text>
-            <CalendarDateFill /> {task.due_date.slice(0, 10)}
-          </Card.Text>
-          {task.user && (
+          <Row>
+            <Card.Title>{task.description}</Card.Title>
+          </Row>
+          <Row>
             <Card.Text>
-              <PersonFill /> {task.user.username}
+              <Bullseye /> {task.story_points}
             </Card.Text>
+          </Row>
+          <Row>
+            <Card.Text>
+              <CalendarDateFill /> {task.due_date.slice(0, 10)}
+            </Card.Text>
+          </Row>
+          {task.user && (
+            <Row>
+              <Card.Text>
+                <PersonFill /> {task.user.username}
+              </Card.Text>
+            </Row>
           )}
         </Card.Body>
         <Card.Footer className="text-center">
