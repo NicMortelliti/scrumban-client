@@ -2,6 +2,7 @@ import React from "react";
 
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 function TaskEditSelect({
   label,
@@ -12,10 +13,10 @@ function TaskEditSelect({
   handleChange,
 }) {
   return (
-    <FloatingLabel label={`${label}:`}>
+    <InputGroup>
+      <InputGroup.Text id="btnGroupAddon">{label}</InputGroup.Text>
       <Form.Select
         value={value}
-        className="my-3"
         onChange={(e) => handleChange(e, name)}>
         {options.map((each) => {
           return (
@@ -25,7 +26,7 @@ function TaskEditSelect({
           );
         })}
       </Form.Select>
-    </FloatingLabel>
+    </InputGroup>
   );
 }
 

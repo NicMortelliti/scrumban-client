@@ -1,6 +1,5 @@
 import React from "react";
 
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
@@ -12,7 +11,6 @@ function TaskEditText({ label, name, value, handleChange }) {
         <Form.Control
           type="text"
           name={name}
-          // className="my-3"
           value={value}
           onChange={(e) => handleChange(e)}
         />
