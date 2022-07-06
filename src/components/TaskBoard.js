@@ -32,12 +32,13 @@ function TaskBoard({ data, currentProject, handleEditOpen }) {
             newClosed = [...newClosed, task];
           }
         }
+        return null;
       });
     setBacklog(newBacklog);
     setInProgress(newInProgress);
     setPeerReview(newPeerReview);
     setClosed(newClosed);
-  }, [data]);
+  }, [data, currentProject]);
 
   const RenderColumns = () => {
     return (
