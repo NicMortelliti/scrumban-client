@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 
-import { Bullseye, CalendarDateFill, PersonFill } from "react-bootstrap-icons";
-
 import TaskCardBadge from "./TaskCardBadge";
 
 function TaskCard({ task, handleEditOpen }) {
