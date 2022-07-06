@@ -2,10 +2,11 @@ import React from "react";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 import { Bullseye, CalendarDateFill, PersonFill } from "react-bootstrap-icons";
+
+import TaskCardBadge from "./TaskCardBadge";
 
 function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
@@ -19,20 +20,20 @@ function TaskCard({ task, handleEditOpen }) {
             <Card.Title>{task.description}</Card.Title>
           </Row>
           <Row>
-            <Card.Text>
-              <Bullseye /> {task.story_points}
-            </Card.Text>
+            <TaskCardBadge
+              bgColor="primary"
+              label={`${task.story_points} Points`}
+            />
           </Row>
           <Row>
-            <Card.Text>
-              <CalendarDateFill /> {task.due_date.slice(0, 10)}
-            </Card.Text>
+            <TaskCardBadge
+              bgColor="secondary"
+              label={task.due_date.slice(0, 10)}
+            />
           </Row>
           {task.user && (
             <Row>
-              <Card.Text>
-                <PersonFill /> {task.user.username}
-              </Card.Text>
+              <TaskCardBadge bgColor="info" label={task.user.username} />
             </Row>
           )}
         </Card.Body>

@@ -52,7 +52,7 @@ function TaskBoard({ data, currentProject, handleEditOpen }) {
         </Row>
 
         {/* Display task cards */}
-        <Row xs={4} md={4} lg={4} className="g-4">
+        <Row xs={4} md={4} lg={4}>
           {[backlog, inProgress, peerReview, closed].map((phase, index) => (
             <Col key={index} xs={3}>
               {phase.map((eachTask) => (
