@@ -45,6 +45,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
     });
   };
 
+  //! Broken
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -77,7 +78,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
   return (
     <Offcanvas show autoFocus placement="end" onHide={handleClose}>
       <h2>Create New Task for {project.name}</h2>
-      <form>
+      <form className="text-center">
         <TaskEditText
           label="Description"
           name="description"
@@ -104,15 +105,17 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
           value={formData.due_date.slice(0, 10)}
           handleChange={handleDateChange}
         />
-        <Button variant="light" onClick={(e) => handleClose(e)}>
-          Cancel
-        </Button>
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={(e) => handleSubmit(e)}>
-          Submit
-        </Button>
+        <div className="form-button-group">
+          <Button variant="light" onClick={(e) => handleClose(e)}>
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={(e) => handleSubmit(e)}>
+            Submit
+          </Button>
+        </div>
       </form>
     </Offcanvas>
   );

@@ -12,11 +12,9 @@ function TaskEditSelect({
   handleChange,
 }) {
   return (
-    <InputGroup>
+    <InputGroup className="form-field">
       <InputGroup.Text id="btnGroupAddon">{label}</InputGroup.Text>
-      <Form.Select
-        value={value}
-        onChange={(e) => handleChange(e, name)}>
+      <Form.Select value={value} onChange={(e) => handleChange(e, name)}>
         {options.map((each) => {
           return (
             <option key={each.id} name={name} value={each.id}>

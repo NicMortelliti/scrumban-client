@@ -135,15 +135,27 @@ function TaskEditForm({
         value={formData.due_date.slice(0, 10)}
         handleChange={handleDateChange}
       />
-      <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
-        Submit
-      </Button>
-      <Button variant="light" onClick={(e) => setOpenEdit(e)}>
-        Cancel
-      </Button>
-      <Button variant="outline-danger" onClick={handleDelete}>
-        Delete
-      </Button>
+      <div className="form-button-group">
+        <Button
+          className="form-button"
+          variant="primary"
+          type="submit"
+          onClick={(e) => handleSubmit(e)}>
+          Submit
+        </Button>
+        <Button
+          className="form-button"
+          variant="light"
+          onClick={(e) => setOpenEdit(e)}>
+          Cancel
+        </Button>
+        <Button
+          className="form-button"
+          variant="outline-danger"
+          onClick={handleDelete}>
+          Delete
+        </Button>
+      </div>
     </Form>
   );
 }

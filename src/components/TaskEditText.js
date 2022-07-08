@@ -6,7 +6,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 function TaskEditText({ label, name, value, handleChange }) {
   return (
     <>
-      <InputGroup>
+      <InputGroup className="form-field">
         <InputGroup.Text id="btnGroupAddon">{label}</InputGroup.Text>
         <Form.Control
           type="text"
