@@ -47,7 +47,7 @@ function TaskBoard({ data, currentProject, handleEditOpen }) {
         <Row xs={4} md={4} lg={4} className="g-4">
           {["Backlog", "In Progress", "Peer Review", "Closed"].map((phase) => (
             <Col key={phase} xs={3} className="text-center">
-              <h5>{phase}</h5>
+              <h5 className="nord6">{phase}</h5>
             </Col>
           ))}
         </Row>

@@ -136,7 +136,7 @@ const App = () => {
   };
 
   return (
-    <div className="bg-light">
+    <div className="bg-custom-light">
       <RenderNavBar />
       <RenderNewTaskForm />
       <RenderTaskBoard />

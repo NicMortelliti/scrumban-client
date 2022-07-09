@@ -9,13 +9,13 @@ import TaskCardBadge from "./TaskCardBadge";
 function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
     return (
-      <Card style={{ width: "flex" }} border="dark" className="my-3">
-        <Card.Header>
+      <Card style={{ width: "flex" }} border="dark" className="my-3 nord3">
+        <Card.Header className="nord6">
           {task.project.name}-{task.id}
         </Card.Header>
-        <Card.Body>
+        <Card.Body className="nord6">
           <Row>
-            <Card.Title>{task.description}</Card.Title>
+            <Card.Title className="nord6">{task.description}</Card.Title>
           </Row>
           <Row>
             <TaskCardBadge
@@ -29,16 +29,16 @@ function TaskCard({ task, handleEditOpen }) {
               label={task.due_date.slice(0, 10)}
             />
           </Row>
-          {task.user && (
-            task.user.id !== 1 && (
+          {task.user && task.user.id !== 1 && (
             <Row>
               <TaskCardBadge bgColor="info" label={task.user.username} />
             </Row>
-          ))}
+          )}
         </Card.Body>
         <Card.Footer className="text-center">
           <Button
-            variant="outline-primary"
+            variant="primary"
+            className="nord-btn"
             onClick={(e) => handleEditOpen(e, task)}>
             Edit
           </Button>
