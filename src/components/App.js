@@ -60,7 +60,7 @@ const App = () => {
         project={currentProject}
         data={data}
         setData={setData}
-        handleClose={handleNewTaskOpen}
+        setOpenEdit={handleNewTaskOpen}
         url={URL}
       />
     );

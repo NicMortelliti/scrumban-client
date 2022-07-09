@@ -6,7 +6,7 @@ import DateSelect from "./DateSelect";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-function NewTask({ users, project, data, setData, handleClose, url }) {
+function NewTask({ users, project, data, setData, setOpenEdit, url }) {
   const [formData, setFormData] = useState({
     description: "",
     story_points: "",
@@ -45,7 +45,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
     });
   };
 
-  //! Broken
+  // Add new task to server
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -64,19 +64,18 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
       }),
     })
       .then((r) => r.json())
-      .then((newTask) => onNewTask(newTask));
-
-    // Close form
-    handleClose(e);
+      .then((newTask) => onNewTask(newTask))
+      .then((e = setOpenEdit(e)));
   };
 
+  // Add new task to board
   const onNewTask = (newTask) => {
     const newData = [...data, newTask];
     setData(newData);
   };
 
   return (
-    <Offcanvas show autoFocus placement="end" onHide={handleClose}>
+    <Offcanvas show autoFocus placement="end" onHide={setOpenEdit}>
       <h2>Create New Task for {project.name}</h2>
       <form className="text-center">
         <TaskEditText
@@ -106,7 +105,7 @@ function NewTask({ users, project, data, setData, handleClose, url }) {
           handleChange={handleDateChange}
         />
         <div className="form-button-group">
-          <Button variant="light" onClick={(e) => handleClose(e)}>
+          <Button variant="light" onClick={(e) => setOpenEdit(e)}>
             Cancel
           </Button>
           <Button
