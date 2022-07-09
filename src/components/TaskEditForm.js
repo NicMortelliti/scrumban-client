@@ -20,7 +20,7 @@ function TaskEditForm({
     id: task.id,
     description: task.description,
     story_points: task.story_points,
-    user_id: task.user_id ? task.user_id : null, // Task isn't always assigned to a user
+    user_id: task.user_id ? task.user_id : "", // Task isn't always assigned to a user
     project_id: task.project_id,
     state: task.state,
     due_date: task.due_date,
