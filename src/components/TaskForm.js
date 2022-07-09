@@ -7,9 +7,10 @@ import TaskEditText from "./TaskEditText";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function TaskEditForm({
+function TaskForm({
   data,
   onDeleteTask,
+  project,
   setData,
   setOpenPanel,
   task,
@@ -17,13 +18,16 @@ function TaskEditForm({
   users,
 }) {
   const [formData, setFormData] = useState({
-    id: task.id,
-    description: task.description,
-    story_points: task.story_points,
-    user_id: task.user_id ? task.user_id : "", // Task isn't always assigned to a user
-    project_id: task.project_id,
-    state: task.state,
-    due_date: task.due_date,
+    id: task ? task.id : "",
+    description: task ? task.description : "",
+    due_date: task ? task.due_date : "",
+    project_id: task ? task.project_id : project.id,
+    state: task ? task.state : "",
+    story_points: task ? task.story_points : "",
+    user: {
+      id: task.user_id ? task.user_id : "",
+      username: task.username ? task.username : "",
+    },
   });
 
   const phases = [
@@ -68,34 +72,56 @@ function TaskEditForm({
   // Handle server patch
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${url}/tasks/${task.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        description: formData.description,
-        due_date: formData.due_date,
-        story_points: formData.story_points,
-        project_id: formData.project_id,
-        state: formData.state,
-        user_id: formData.user_id,
-      }),
-    })
+    (task.id
+      ? fetch(`${url}/tasks/${task.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            description: formData.description,
+            due_date: formData.due_date,
+            story_points: formData.story_points,
+            project_id: formData.project_id,
+            state: formData.state,
+            user_id: formData.user_id,
+          }),
+        })
+      : fetch(`${url}/tasks`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            description: formData.description,
+            due_date: formData.due_date,
+            story_points: formData.story_points,
+            state: 1,
+            project_id: formData.project_id,
+            user_id: formData.user.id,
+          }),
+        })
+    )
       .then((r) => r.json())
-      .then((updatedTask) => onUpdateTask(updatedTask))
+      .then((newTask) => handleDataUpdate(newTask))
       .then((e = setOpenPanel(e)));
   };
 
-  // Handle updating submitted task
-  const onUpdateTask = (updatedTask) => {
-    const newData = data.map((task) => {
-      if (task.id === updatedTask.id) {
-        return updatedTask;
-      } else {
-        return task;
-      }
-    });
+  // Update task board
+  const handleDataUpdate = (newTask) => {
+    const newData = task
+      ? // If editing task
+        data.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          } else {
+            return task;
+          }
+        })
+      : // If adding new task
+        [...data, newTask];
+
+    // Set new data
     setData(newData);
   };
 
@@ -160,4 +186,4 @@ function TaskEditForm({
   );
 }
 
-export default TaskEditForm;
+export default TaskForm;

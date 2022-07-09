@@ -9,9 +9,9 @@ import Form from "react-bootstrap/Form";
 function NewTaskForm({ data, project, setData, setOpenPanel, url, users }) {
   const [formData, setFormData] = useState({
     description: "",
-    story_points: "",
     due_date: "",
     project_id: project.id,
+    story_points: "",
     user: {
       id: "",
       username: "",
@@ -103,14 +103,14 @@ function NewTaskForm({ data, project, setData, setOpenPanel, url, users }) {
         handleChange={handleDateChange}
       />
       <div className="form-button-group">
-        <Button variant="light" onClick={(e) => setOpenPanel(e)}>
-          Cancel
-        </Button>
         <Button
           variant="primary"
           type="submit"
           onClick={(e) => handleSubmit(e)}>
           Submit
+        </Button>
+        <Button variant="light" onClick={(e) => setOpenPanel(e)}>
+          Cancel
         </Button>
       </div>
     </Form>

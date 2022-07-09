@@ -3,7 +3,7 @@ import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import NewTaskForm from "./NewTaskForm";
-import TaskEditForm from "./TaskEditForm";
+import TaskForm from "./TaskForm";
 
 function TaskPanel({
   data,
@@ -20,7 +20,7 @@ function TaskPanel({
   const RenderForm = () => {
     if (verb === "Editing") {
       return (
-        <TaskEditForm
+        <TaskForm
           data={data}
           onDeleteTask={onDeleteTask}
           setData={setData}
