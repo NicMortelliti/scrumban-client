@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 import NavBar from "./NavBar";
-import NewTask from "./NewTask";
 import ProjectSelectModal from "./ProjectSelectModal";
 import TaskBoard from "./TaskBoard";
-import TaskEditPanel from "./TaskEditPanel";
+import TaskPanel from "./TaskPanel";
 
 const URL = "http://localhost:9292";
 
@@ -16,8 +15,7 @@ const App = () => {
   const [projects, setProjects] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
   const [currentProject, setCurrentProject] = useState(null);
-  const [newTaskOpen, setNewTaskOpen] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
+  const [openPanel, setOpenPanel] = useState(false);
 
   // Fetch data from server
   useEffect(() => {
@@ -43,26 +41,21 @@ const App = () => {
 
   // Handle opening/closing of new task form
   const handleNewTaskOpen = (e) => {
-    setNewTaskOpen(!newTaskOpen);
+    setCurrentTask("");
+    setOpenPanel(!openPanel);
+  };
+
+  // Display Task Edit Panel
+  const handleEditOpen = (e, task) => {
+    e && e.preventDefault();
+    task && setCurrentTask(task);
+    setOpenPanel(!openPanel);
   };
 
   // Handle the selection of a project
   const handleProjectChange = (e) =>
     projects.map(
       (project) => project.id === parseInt(e) && setCurrentProject(project)
-    );
-
-  // Display New Task Form
-  const RenderNewTaskForm = () =>
-    newTaskOpen && (
-      <NewTask
-        users={users}
-        project={currentProject}
-        data={data}
-        setData={setData}
-        setOpenEdit={handleNewTaskOpen}
-        url={URL}
-      />
     );
 
   // Display Nav Bar
@@ -108,31 +101,42 @@ const App = () => {
     );
 
   // Display Task Edit Panel
-  const RenderTaskEdit = () =>
-    openEdit && (
-      <TaskEditPanel
-        task={currentTask}
-        setOpenEdit={handleEditOpen}
+  const RenderTaskEditForm = () =>
+    openPanel &&
+    currentTask && (
+      <TaskPanel
         data={data}
-        setData={setData}
-        users={users}
         onDeleteTask={handleDeleteTask}
+        project={currentProject}
+        setData={setData}
+        setOpenPanel={handleEditOpen}
+        task={currentTask}
         url={URL}
+        users={users}
+        verb="Editing"
+      />
+    );
+
+  // Display New Task Form
+  const RenderNewTaskForm = () =>
+    openPanel &&
+    !currentTask && (
+      <TaskPanel
+        data={data}
+        project={currentProject}
+        setData={setData}
+        setOpenPanel={handleNewTaskOpen}
+        url={URL}
+        users={users}
+        verb="Create new task for"
       />
     );
 
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
-    setOpenEdit(!openEdit);
+    setOpenPanel(!openPanel);
     setData(updatedData);
-  };
-
-  // Display Task Edit Panel
-  const handleEditOpen = (e, task) => {
-    e && e.preventDefault();
-    task && setCurrentTask(task);
-    setOpenEdit(!openEdit);
   };
 
   return (
@@ -140,7 +144,7 @@ const App = () => {
       <RenderNavBar />
       <RenderNewTaskForm />
       <RenderTaskBoard />
-      <RenderTaskEdit />
+      <RenderTaskEditForm />
       <RenderProjectSelect />
       <RenderLoading />
     </div>

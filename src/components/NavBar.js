@@ -23,7 +23,7 @@ function NavBar({ handleOpen, projects, currentProject, handleChange }) {
           )}
         </Container>
       </Navbar>
-      <br></br>
+      <br />
     </>
   );
 

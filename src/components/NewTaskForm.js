@@ -4,9 +4,9 @@ import TaskEditSelect from "./TaskEditSelect";
 import DateSelect from "./DateSelect";
 
 import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
+import Form from "react-bootstrap/Form";
 
-function NewTask({ users, project, data, setData, setOpenEdit, url }) {
+function NewTaskForm({ data, project, setData, setOpenPanel, url, users }) {
   const [formData, setFormData] = useState({
     description: "",
     story_points: "",
@@ -65,7 +65,7 @@ function NewTask({ users, project, data, setData, setOpenEdit, url }) {
     })
       .then((r) => r.json())
       .then((newTask) => onNewTask(newTask))
-      .then((e = setOpenEdit(e)));
+      .then((e = setOpenPanel(e)));
   };
 
   // Add new task to board
@@ -75,49 +75,46 @@ function NewTask({ users, project, data, setData, setOpenEdit, url }) {
   };
 
   return (
-    <Offcanvas show autoFocus placement="end" onHide={setOpenEdit}>
-      <h2>Create New Task for {project.name}</h2>
-      <form className="text-center">
-        <TaskEditText
-          label="Description"
-          name="description"
-          value={formData.description}
-          handleChange={handleTextChange}
-        />
-        <TaskEditText
-          label="Points"
-          name="story_points"
-          value={formData.story_points}
-          handleChange={handleTextChange}
-        />
-        <TaskEditSelect
-          label="Assign to"
-          name="user.id"
-          value={formData.user.id}
-          options={users}
-          displayAttribute="username"
-          handleChange={handleUserSelectChange}
-        />
-        <DateSelect
-          label="Due Date"
-          name="due_date"
-          value={formData.due_date.slice(0, 10)}
-          handleChange={handleDateChange}
-        />
-        <div className="form-button-group">
-          <Button variant="light" onClick={(e) => setOpenEdit(e)}>
-            Cancel
-          </Button>
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={(e) => handleSubmit(e)}>
-            Submit
-          </Button>
-        </div>
-      </form>
-    </Offcanvas>
+    <Form className="text-center">
+      <TaskEditText
+        label="Description"
+        name="description"
+        value={formData.description}
+        handleChange={handleTextChange}
+      />
+      <TaskEditText
+        label="Points"
+        name="story_points"
+        value={formData.story_points}
+        handleChange={handleTextChange}
+      />
+      <TaskEditSelect
+        label="Assign to"
+        name="user.id"
+        value={formData.user.id}
+        options={users}
+        displayAttribute="username"
+        handleChange={handleUserSelectChange}
+      />
+      <DateSelect
+        label="Due Date"
+        name="due_date"
+        value={formData.due_date ? formData.due_date.slice(0, 10) : ""}
+        handleChange={handleDateChange}
+      />
+      <div className="form-button-group">
+        <Button variant="light" onClick={(e) => setOpenPanel(e)}>
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={(e) => handleSubmit(e)}>
+          Submit
+        </Button>
+      </div>
+    </Form>
   );
 }
 
-export default NewTask;
+export default NewTaskForm;

@@ -8,13 +8,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 function TaskEditForm({
-  task,
-  setOpenEdit,
   data,
-  setData,
-  users,
   onDeleteTask,
+  setData,
+  setOpenPanel,
+  task,
   url,
+  users,
 }) {
   const [formData, setFormData] = useState({
     id: task.id,
@@ -84,7 +84,7 @@ function TaskEditForm({
     })
       .then((r) => r.json())
       .then((updatedTask) => onUpdateTask(updatedTask))
-      .then((e = setOpenEdit(e)));
+      .then((e = setOpenPanel(e)));
   };
 
   // Handle updating submitted task
@@ -146,7 +146,7 @@ function TaskEditForm({
         <Button
           className="form-button custom-secondary-btn"
           variant="light"
-          onClick={(e) => setOpenEdit(e)}>
+          onClick={(e) => setOpenPanel(e)}>
           Cancel
         </Button>
         <Button
