@@ -16,8 +16,8 @@ function TaskPanel({
   users,
   verb,
 }) {
+  // Determine which form to render
   const RenderForm = () => {
-    console.log(verb);
     if (verb === "Editing") {
       return (
         <TaskEditForm
