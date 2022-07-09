@@ -2,7 +2,6 @@ import React from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import NewTaskForm from "./NewTaskForm";
 import TaskForm from "./TaskForm";
 
 function TaskPanel({
@@ -11,7 +10,7 @@ function TaskPanel({
   project,
   setData,
   setOpenPanel,
-  task = null,
+  task,
   url,
   users,
   verb,
@@ -32,7 +31,7 @@ function TaskPanel({
       );
     } else {
       return (
-        <NewTaskForm
+        <TaskForm
           data={data}
           project={project}
           setData={setData}

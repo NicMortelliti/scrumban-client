@@ -24,10 +24,8 @@ function TaskForm({
     project_id: task ? task.project_id : project.id,
     state: task ? task.state : "",
     story_points: task ? task.story_points : "",
-    user: {
-      id: task.user_id ? task.user_id : "",
-      username: task.username ? task.username : "",
-    },
+    user_id: task && task.user_id ? task.user_id : "",
+    username: task && task.username ? task.username : "",
   });
 
   const phases = [
@@ -69,39 +67,34 @@ function TaskForm({
       .then((deletedTask) => onDeleteTask(deletedTask.id));
   };
 
-  // Handle server patch
+  // Handle server patch/post
   const handleSubmit = (e) => {
     e.preventDefault();
-    (task.id
-      ? fetch(`${url}/tasks/${task.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            description: formData.description,
-            due_date: formData.due_date,
-            story_points: formData.story_points,
-            project_id: formData.project_id,
-            state: formData.state,
-            user_id: formData.user_id,
-          }),
-        })
-      : fetch(`${url}/tasks`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            description: formData.description,
-            due_date: formData.due_date,
-            story_points: formData.story_points,
-            state: 1,
-            project_id: formData.project_id,
-            user_id: formData.user.id,
-          }),
-        })
-    )
+
+    // Set fetch parameters for patch or post
+    let fetchURL, fetchMethod;
+    if (task) {
+      fetchURL = `${url}/tasks/${task.id}`;
+      fetchMethod = "PATCH";
+    } else {
+      fetchURL = `${url}/tasks`;
+      fetchMethod = "POST";
+    }
+
+    fetch(fetchURL, {
+      method: fetchMethod,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: formData.description,
+        due_date: formData.due_date,
+        project_id: formData.project_id,
+        state: formData.state ? formData.state : 1,
+        story_points: formData.story_points,
+        user_id: formData.user_id,
+      }),
+    })
       .then((r) => r.json())
       .then((newTask) => handleDataUpdate(newTask))
       .then((e = setOpenPanel(e)));
@@ -109,17 +102,20 @@ function TaskForm({
 
   // Update task board
   const handleDataUpdate = (newTask) => {
-    const newData = task
-      ? // If editing task
-        data.map((task) => {
-          if (task.id === newTask.id) {
-            return newTask;
-          } else {
-            return task;
-          }
-        })
-      : // If adding new task
-        [...data, newTask];
+    let newData;
+    if (task) {
+      // If editing task
+      newData = data.map((task) => {
+        if (task.id === newTask.id) {
+          return newTask;
+        } else {
+          return task;
+        }
+      });
+    } else {
+      // If adding new task
+      newData = [...data, newTask];
+    }
 
     // Set new data
     setData(newData);
@@ -147,14 +143,16 @@ function TaskForm({
         displayAttribute="username"
         handleChange={handleSelectChange}
       />
-      <TaskEditSelect
-        label="Phase"
-        name="state"
-        value={formData.state}
-        options={phases}
-        displayAttribute="name"
-        handleChange={handleSelectChange}
-      />
+      {task && (
+        <TaskEditSelect
+          label="Phase"
+          name="state"
+          value={formData.state}
+          options={phases}
+          displayAttribute="name"
+          handleChange={handleSelectChange}
+        />
+      )}
       <DateSelect
         label="Due Date"
         name="due_date"
@@ -175,12 +173,14 @@ function TaskForm({
           onClick={(e) => setOpenPanel(e)}>
           Cancel
         </Button>
-        <Button
-          className="form-button custom-delete-btn"
-          variant="outline-danger"
-          onClick={handleDelete}>
-          Delete
-        </Button>
+        {task && (
+          <Button
+            className="form-button custom-delete-btn"
+            variant="outline-danger"
+            onClick={handleDelete}>
+            Delete
+          </Button>
+        )}
       </div>
     </Form>
   );
