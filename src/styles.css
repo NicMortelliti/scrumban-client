@@ -12,7 +12,7 @@ body {
   float: center;
 }
 
-.bg-custom-light {
+.bg-custom-dark {
   background-color: #2e3440;
 }
 
@@ -32,6 +32,12 @@ body {
 }
 
 .custom-primary-btn:hover {
+  color: #2e3440;
+  background-color: #81a1c1;
+  border-color: #81a1c1;
+}
+
+.custom-primary-btn select {
   color: #2e3440;
   background-color: #81a1c1;
   border-color: #81a1c1;
