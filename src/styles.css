@@ -70,3 +70,7 @@ body {
 .off-canvas {
   background-color: #3b4252;
 }
+
+.card{
+  height: 300px;
+}
