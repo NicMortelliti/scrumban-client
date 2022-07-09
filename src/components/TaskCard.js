@@ -30,10 +30,11 @@ function TaskCard({ task, handleEditOpen }) {
             />
           </Row>
           {task.user && (
+            task.user.id !== 1 && (
             <Row>
               <TaskCardBadge bgColor="info" label={task.user.username} />
             </Row>
-          )}
+          ))}
         </Card.Body>
         <Card.Footer className="text-center">
           <Button
