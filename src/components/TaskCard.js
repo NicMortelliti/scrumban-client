@@ -38,7 +38,7 @@ function TaskCard({ task, handleEditOpen }) {
         <Card.Footer className="text-center">
           <Button
             variant="primary"
-            className="nord-btn"
+            className="custom-primary-btn"
             onClick={(e) => handleEditOpen(e, task)}>
             Edit
           </Button>

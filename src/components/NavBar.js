@@ -29,7 +29,10 @@ function NavBar({ handleOpen, projects, currentProject, handleChange }) {
 
   // Display button to create new task
   const RenderAddButton = () => (
-    <Button variant="primary" onClick={(e) => handleOpen(e)}>
+    <Button
+      variant="primary"
+      className="custom-primary-btn"
+      onClick={(e) => handleOpen(e)}>
       Create Task
     </Button>
   );

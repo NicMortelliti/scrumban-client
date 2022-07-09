@@ -137,20 +137,20 @@ function TaskEditForm({
       />
       <div className="form-button-group">
         <Button
-          className="form-button"
+          className="form-button custom-primary-form-btn"
           variant="primary"
           type="submit"
           onClick={(e) => handleSubmit(e)}>
           Submit
         </Button>
         <Button
-          className="form-button"
+          className="form-button custom-secondary-btn"
           variant="light"
           onClick={(e) => setOpenEdit(e)}>
           Cancel
         </Button>
         <Button
-          className="form-button"
+          className="form-button custom-delete-btn"
           variant="outline-danger"
           onClick={handleDelete}>
           Delete

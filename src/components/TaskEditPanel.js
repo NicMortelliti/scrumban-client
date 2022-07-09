@@ -14,9 +14,14 @@ function TaskEditPanel({
   url,
 }) {
   return (
-    <Offcanvas show autoFocus={true} placement="end" onHide={setOpenEdit}>
+    <Offcanvas
+      className="off-canvas"
+      show
+      autoFocus={true}
+      placement="end"
+      onHide={setOpenEdit}>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>
+        <Offcanvas.Title className="nord6">
           Editing {task.project.name}-{task.id}
         </Offcanvas.Title>
       </Offcanvas.Header>

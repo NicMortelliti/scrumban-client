@@ -1,3 +1,7 @@
+body {
+  background-color: #2e3440;
+}
+
 .form-field {
   padding: 10px;
 }
@@ -21,14 +25,42 @@
   background-color: #4c566a;
 }
 
-.nord-btn {
-  color: #eceff4;
-  background-color: #3b4252;
-  border-color: #3b4252;
+.custom-primary-btn {
+  color: #2e3440;
+  background-color: #88c0d0;
+  border-color: #88c0d0;
 }
 
-.nord-btn:hover{
+.custom-primary-btn:hover {
   color: #2e3440;
-  background-color: #88C0D0;
-  border-color: #88C0D0;
+  background-color: #81a1c1;
+  border-color: #81a1c1;
+}
+
+.custom-primary-form-btn {
+  color: #2e3440;
+  background-color: #81a1c1;
+  border-color: #81a1c1;
+}
+
+.custom-primary-form-btn:hover {
+  color: #2e3440;
+  background-color: #88c0d0;
+  border-color: #88c0d0;
+}
+
+.custom-delete-btn {
+  color: #eceff4;
+  background-color: #bf616a;
+  border-color: #bf616a;
+}
+
+.custom-secondary-btn {
+  color: #2e3440;
+  background-color: #d8dee9;
+  border-color: #d8dee9;
+}
+
+.off-canvas {
+  background-color: #3b4252;
 }
