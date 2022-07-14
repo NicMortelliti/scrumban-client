@@ -124,13 +124,13 @@ function TaskForm({
   return (
     <Form className="text-center">
       <TaskEditText
-        label="Description"
+        label="Description*"
         name="description"
         value={formData.description}
         handleChange={handleTextChange}
       />
       <TaskEditText
-        label="Points"
+        label="Points*"
         name="story_points"
         value={formData.story_points}
         handleChange={handleTextChange}
@@ -145,7 +145,7 @@ function TaskForm({
       />
       {task && (
         <TaskEditSelect
-          label="Phase"
+          label="Phase*"
           name="state"
           value={formData.state}
           options={phases}
@@ -154,7 +154,7 @@ function TaskForm({
         />
       )}
       <DateSelect
-        label="Due Date"
+        label="Due Date*"
         name="due_date"
         value={formData.due_date.slice(0, 10)}
         handleChange={handleDateChange}
