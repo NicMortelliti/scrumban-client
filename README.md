@@ -36,7 +36,7 @@ The server should now be running on `localhost:3000`.
 
 ---
 
-## Usage
+## 🙃 **_Usage_**
 
 <img src="assets/screencasts/UsageDemo.gif" width="90%" height="90%"/>
 
