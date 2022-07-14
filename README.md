@@ -4,6 +4,8 @@
 
 This is a React application that allows a user to manage scrum/kanban tasks for a project. The user may edit the details of a task (description, due date, assigned implementer, etc), delete a task or create a new task.
 
+---
+
 ## 🖥️ **_Install_**
 
 **Note: This application is intended for use with the associated [Ruby server](https://github.com/NicMortelliti/scrumban-server).**
