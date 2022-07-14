@@ -38,7 +38,7 @@ The server should now be running on `localhost:3000`.
 
 ## Usage
 
-<img src="assets/screencasts/UsageDemo.gif" width="80%" height="80%"/>
+<img src="assets/screencasts/UsageDemo.gif" width="90%" height="90%"/>
 
 ### **Selecting a project**
 
