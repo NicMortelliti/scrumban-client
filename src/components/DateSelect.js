@@ -5,7 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 function DateSelect({ label, name, value, handleChange }) {
   return (
     <InputGroup className="form-field">
-      <InputGroup.Text id="btnGroupAddon">{`${label}:`}</InputGroup.Text>
+      <InputGroup.Text id="btnGroupAddon">{`${label}`}</InputGroup.Text>
       <input
         type="date"
         name={name}
