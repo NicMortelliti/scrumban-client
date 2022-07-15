@@ -78,6 +78,12 @@ Selecting a project can be done two ways:
 
 ---
 
+## **_Acknowledgements_**
+
+[Nord color theme](https://www.nordtheme.com/)
+
+---
+
 ## **_License_**
 
 [MIT](https://choosealicense.com/licenses/mit/)
