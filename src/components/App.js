@@ -7,7 +7,7 @@ import ProjectSelectModal from "./ProjectSelectModal";
 import TaskBoard from "./TaskBoard";
 import TaskPanel from "./TaskPanel";
 
-const URL = "http://localhost:9292";
+const URL = `${process.env.REACT_APP_API_URL}`;
 
 const App = () => {
   const [data, setData] = useState([]);
