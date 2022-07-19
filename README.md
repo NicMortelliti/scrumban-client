@@ -2,7 +2,7 @@
 
 ## 📖 **_Description_**
 
-This is a React application that allows a user to manage scrum/kanban tasks for a project. The user may edit the details of a task (description, due date, assigned implementer, etc), delete a task or create a new task.
+This is a React application that allows a user to manage [scrum](https://www.zoho.com/sprints/what-is-a-scrum-board.html)/[kanban](https://www.atlassian.com/agile/kanban/boards) tasks for a project. The user may edit the details of a task (description, due date, assigned implementer, etc), delete a task or create a new task.
 
 ---
 
