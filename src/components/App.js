@@ -76,12 +76,7 @@ const App = () => {
 
   // Display Loading indicator
   const RenderLoading = () =>
-    !projects && (
-      <div>
-        <Spinner animation="grow" role="status" className="spinner" />
-        <h2 className="spinner-text">Loading...</h2>
-      </div>
-    );
+    !projects && <Spinner animation="grow" role="status" className="spinner" />;
 
   // Display Project Select Modal
   const RenderProjectSelect = () =>

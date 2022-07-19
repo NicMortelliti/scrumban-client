@@ -87,14 +87,3 @@ body {
     width: 0;
   }
 }
-
-.spinner-text {
-  color: #bf616a;
-  position: fixed;
-  top: 58%;
-  left: 47%;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 30em;
-  animation: linearwipe 4s steps(60, end);
-}
