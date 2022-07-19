@@ -5,7 +5,14 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Modal from "react-bootstrap/Modal";
 
-function ProjectPanel({ url, projects, setProjects, setOpenPanel, verb }) {
+function ProjectPanel({
+  url,
+  projects,
+  setProjects,
+  setOpenPanel,
+  setCurrentProject,
+  verb,
+}) {
   const [formData, setFormData] = useState({ name: "" });
 
   // Update field data
@@ -33,6 +40,7 @@ function ProjectPanel({ url, projects, setProjects, setOpenPanel, verb }) {
   const handleDataUpdate = (newProject) => {
     const newProjects = [...projects, newProject];
     setProjects(newProjects);
+    setCurrentProject(newProject);
   };
 
   return (
