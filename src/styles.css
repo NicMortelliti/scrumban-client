@@ -71,6 +71,30 @@ body {
   background-color: #3b4252;
 }
 
-.card{
+.card {
   height: 300px;
+}
+
+.spinner {
+  background-color: #bf616a;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes linearwipe {
+  from {
+    width: 0;
+  }
+}
+
+.spinner-text {
+  color: #bf616a;
+  position: fixed;
+  top: 58%;
+  left: 47%;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: linearwipe 4s steps(60, end);
 }

@@ -77,10 +77,9 @@ const App = () => {
   // Display Loading indicator
   const RenderLoading = () =>
     !projects && (
-      <div className="align-middle">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+      <div>
+        <Spinner animation="grow" role="status" className="spinner" />
+        <h2 className="spinner-text">Loading...</h2>
       </div>
     );
 
