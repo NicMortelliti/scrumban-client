@@ -162,21 +162,18 @@ function TaskForm({
       <div className="form-button-group">
         <Button
           className="form-button custom-primary-form-btn"
-          variant="primary"
           type="submit"
           onClick={(e) => handleSubmit(e)}>
           Submit
         </Button>
         <Button
           className="form-button custom-secondary-btn"
-          variant="light"
           onClick={(e) => setOpenPanel(e)}>
           Cancel
         </Button>
         {task && (
           <Button
             className="form-button custom-delete-btn"
-            variant="outline-danger"
             onClick={handleDelete}>
             Delete
           </Button>
