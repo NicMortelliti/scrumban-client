@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import ProjectSelectModal from "./ProjectSelectModal";
 import TaskBoard from "./TaskBoard";
 import TaskPanel from "./TaskPanel";
+import ProjectPanel from "./ProjectPanel";
 
 const URL = `${process.env.REACT_APP_API_URL}`;
 
@@ -16,6 +17,7 @@ const App = () => {
   const [currentTask, setCurrentTask] = useState(null);
   const [currentProject, setCurrentProject] = useState(null);
   const [openPanel, setOpenPanel] = useState(false);
+  const [addNewProject, setAddNewProject] = useState(true);
 
   // Fetch data from server
   useEffect(() => {
@@ -44,6 +46,9 @@ const App = () => {
     setCurrentTask("");
     setOpenPanel(!openPanel);
   };
+
+  // Handle opening/closing of new project form
+  const handleNewProjectFormOpen = (e) => setAddNewProject(!addNewProject);
 
   // Display Task Edit Panel
   const handleEditOpen = (e, task) => {
@@ -132,6 +137,18 @@ const App = () => {
       />
     );
 
+  // Display New Project Form
+  const RenderNewProjectForm = () =>
+    addNewProject && (
+      <ProjectPanel
+        url={URL}
+        projects={projects}
+        setProjects={setProjects}
+        setOpenPanel={handleNewProjectFormOpen}
+        verb="Create new project"
+      />
+    );
+
   // Delete tasks
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((eachTask) => eachTask.id !== id);
@@ -146,6 +163,7 @@ const App = () => {
       <RenderTaskBoard />
       <RenderTaskEditForm />
       <RenderProjectSelect />
+      <RenderNewProjectForm />
       <RenderLoading />
     </div>
   );
