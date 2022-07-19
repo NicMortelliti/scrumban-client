@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 function ProjectSelectModal({ projects, handleChange }) {
   return (
     <Modal show size="lg" centered className="text-center">
-      <Modal.Header closeButton className="bg-custom-dark nord6">
+      <Modal.Header className="bg-custom-dark nord6">
         <Modal.Title>Welcome to Scrum!</Modal.Title>
       </Modal.Header>
 
