@@ -42,7 +42,7 @@ function TaskBoard({ data, currentProject, handleEditOpen }) {
 
   const RenderColumns = () => {
     return (
-      <Container fluid="md">
+      <Container fluid>
         {/* Display swim lane headers */}
         <Row xs={4} md={4} lg={4} className="g-4">
           {["Backlog", "In Progress", "Peer Review", "Closed"].map((phase) => (
