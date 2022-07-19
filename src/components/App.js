@@ -17,7 +17,7 @@ const App = () => {
   const [currentTask, setCurrentTask] = useState(null);
   const [currentProject, setCurrentProject] = useState(null);
   const [openPanel, setOpenPanel] = useState(false);
-  const [addNewProject, setAddNewProject] = useState(true);
+  const [addNewProject, setAddNewProject] = useState(false);
 
   // Fetch data from server
   useEffect(() => {
@@ -70,6 +70,7 @@ const App = () => {
       projects={projects}
       currentProject={currentProject}
       handleChange={handleProjectChange}
+      handleAddProject={setAddNewProject}
     />
   );
 
@@ -145,6 +146,7 @@ const App = () => {
         projects={projects}
         setProjects={setProjects}
         setOpenPanel={handleNewProjectFormOpen}
+        setCurrentProject={setCurrentProject}
         verb="Create new project"
       />
     );
