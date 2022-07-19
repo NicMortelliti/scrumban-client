@@ -36,7 +36,7 @@ function ProjectPanel({ url, projects, setProjects, setOpenPanel, verb }) {
   };
 
   return (
-    <Modal show size="lg" centered className="text-center">
+    <Modal show size="md" centered className={`text-center`}>
       <Modal.Header closeButton className="bg-custom-dark nord6">
         <Modal.Title>{verb}</Modal.Title>
       </Modal.Header>
@@ -46,6 +46,7 @@ function ProjectPanel({ url, projects, setProjects, setOpenPanel, verb }) {
         <InputGroup className="form-field">
           <InputGroup.Text id="btnGroupAddon">Project Name: </InputGroup.Text>
           <Form.Control
+            autoFocus
             type="text"
             name="name"
             value={formData.name}
