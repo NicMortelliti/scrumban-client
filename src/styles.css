@@ -1,3 +1,9 @@
+:root {
+  --main-bg-color: #2e3440;
+  --white: #eceff4;
+  --gray: #4c556a;
+}
+
 body {
   background-color: #2e3440;
 }
@@ -13,16 +19,16 @@ body {
 }
 
 .bg-custom-dark {
-  background-color: #2e3440;
+  background-color: var(--main-bg-color);
 }
 
 .nord6 {
-  color: #eceff4;
+  color: var(--white);
 }
 
 .nord3 {
-  color: #4c566a;
-  background-color: #4c566a;
+  color: var(--gray);
+  background-color: var(--gray);
 }
 
 .custom-primary-btn {
@@ -73,6 +79,12 @@ body {
 
 .card {
   height: 300px;
+  box-shadow: white;
+  border-color: #4c566a;
+  border-radius: 1rem;
+  box-shadow: 0px 1px 5px 2px #242a36;
+  background-color: var(--gray);
+  color: var(--white);
 }
 
 .spinner {

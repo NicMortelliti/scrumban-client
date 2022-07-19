@@ -9,13 +9,13 @@ import TaskCardBadge from "./TaskCardBadge";
 function TaskCard({ task, handleEditOpen }) {
   const RenderCard = () => {
     return (
-      <Card style={{ width: "flex" }} border="dark" className="my-3 nord3">
+      <Card style={{ width: "flex" }} className="my-3 card">
         <Card.Header className="nord6">
           {task.project.name}-{task.id}
         </Card.Header>
-        <Card.Body className="nord6">
+        <Card.Body>
           <Row>
-            <Card.Title className="nord6">{task.description}</Card.Title>
+            <Card.Title>{task.description}</Card.Title>
           </Row>
           <Row>
             <TaskCardBadge
