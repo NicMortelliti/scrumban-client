@@ -18,7 +18,7 @@ function NavBar({
   // if currentProject is not null
   const RenderNavBar = () => (
     <>
-      <Navbar sticky="top" bg="dark" variant="dark" border="dark">
+      <Navbar sticky="top" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>Scrum Board</Navbar.Brand>
           {currentProject && (
