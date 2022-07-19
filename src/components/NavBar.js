@@ -19,7 +19,7 @@ function NavBar({
   const RenderNavBar = () => (
     <>
       <Navbar sticky="top" bg="dark" variant="dark">
-        <Container>
+        <Container fluid>
           <Navbar.Brand>Scrum Board</Navbar.Brand>
           {currentProject && (
             <>
