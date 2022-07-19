@@ -1,4 +1,4 @@
-# **Scrumban Server**
+# **Scrumban Client**
 
 ## 📖 **_Description_**
 
