@@ -50,6 +50,16 @@ Selecting a project can be done two ways:
 
 2. You may change the current project by selecting the desired project from the drop down menu in the navigation bar.
 
+### **Creating a project**
+
+1. Click the project drop down menu in the navigation bar.
+
+2. Select **Add Project** from the menu.
+
+3. Enter a name for the new project in the new modal window.
+
+4. Click **Submit**.
+
 ### **Editing a task**
 
 1. Click the **Edit** button on the task card.
