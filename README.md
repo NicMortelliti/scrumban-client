@@ -1,5 +1,8 @@
 # **Scrumban Client**
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4947390e-6ea6-4be2-b6cd-88baf6293ac2/deploy-status)](https://app.netlify.com/sites/scrumban/deploys)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 ## 📖 **_Description_**
 
 This is a React application that allows a user to manage [scrum](https://www.zoho.com/sprints/what-is-a-scrum-board.html)/[kanban](https://www.atlassian.com/agile/kanban/boards) tasks for a project. The user may edit the details of a task (description, due date, assigned implementer, etc), delete a task or create a new task.
